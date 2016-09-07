@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TheSkyMartSite.Models.Item_Details>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_main_image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_image_1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_image_2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_image_3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_image_4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_image_5)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_master.Item_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_main_image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_image_1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_image_2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_image_3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_image_4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_image_5)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_master.Item_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Item_code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Item_code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Item_code })
+        </td>
+    </tr>
+}
+
+</table>

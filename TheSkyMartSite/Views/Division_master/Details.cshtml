@@ -1,0 +1,26 @@
+﻿@model TheSkyMartSite.Models.Division_master
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Division_master</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Division_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Division_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Division_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TheSkyMartSite.Models.Supplier_Masters>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credit_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_term)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active_status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location_master.Location_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit_limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_term)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active_status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location_master.Location_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Supplier_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Supplier_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Supplier_ID })
+        </td>
+    </tr>
+}
+
+</table>

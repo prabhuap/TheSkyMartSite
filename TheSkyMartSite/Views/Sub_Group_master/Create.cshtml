@@ -1,0 +1,77 @@
+﻿@model TheSkyMartSite.Models.Sub_Group_master
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Sub_Group_master</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sub_Group_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sub_Group_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sub_Group_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Division", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Division", ViewBag.Division_ID as SelectList, "-- Please Select a Division  --", new { style = "width:250px" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Group", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Group_ID", new SelectList(string.Empty, "Value", "Text"), "-- Please select a Group --", new { style = "width:250px", @class = "dropdown1" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Country Dropdown Selectedchange event
+        $("#Division").change(function () {
+            $("#Group_ID").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetGroups")', // Calling json method
+                dataType: 'json',
+                data: { id: $("#Division").val() },
+                // Get Selected Division ID.
+                success: function (groups) {
+                    $.each(groups, function (i, group) {
+                        $("#Group_ID").append('<option value="' + group.Value + '">' +
+                             group.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve Group.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>

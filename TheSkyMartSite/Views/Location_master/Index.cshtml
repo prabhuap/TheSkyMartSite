@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TheSkyMartSite.Models.Location_master>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Location_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location_Currency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location_Currency_value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country_master.Country_name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location_Currency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location_Currency_value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country_master.Country_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Location_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Location_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Location_ID })
+        </td>
+    </tr>
+}
+
+</table>

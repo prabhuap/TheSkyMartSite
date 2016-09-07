@@ -1,0 +1,74 @@
+﻿@model TheSkyMartSite.Models.Item_master
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item_master</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Division_master.Division_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Division_master.Division_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Group_master.Group_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Group_master.Group_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_Details.Item_main_image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_Details.Item_main_image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sub_Group_master.Sub_Group_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sub_Group_master.Sub_Group_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item_Code }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

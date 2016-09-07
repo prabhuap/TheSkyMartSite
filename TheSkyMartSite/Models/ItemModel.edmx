@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TheskymartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Country_master">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Division_master">
+          <Key>
+            <PropertyRef Name="Division_ID" />
+          </Key>
+          <Property Name="Division_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Division_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Group_master">
+          <Key>
+            <PropertyRef Name="Group_ID" />
+          </Key>
+          <Property Name="Group_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Group_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Division_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Theskymart.dbo.Item_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Item_Details">
+          <Key>
+            <PropertyRef Name="Item_code" />
+          </Key>
+          <Property Name="Item_code" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_main_image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_5" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Item_master">
+          <Key>
+            <PropertyRef Name="Item_Code" />
+          </Key>
+          <Property Name="Item_Code" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_Name" Type="nvarchar(max)" />
+          <Property Name="Item_Brand" Type="nvarchar(max)" />
+          <Property Name="Item_Description" Type="text" />
+          <Property Name="Item_Division" Type="int" Nullable="false" />
+          <Property Name="Item_Group" Type="int" Nullable="false" />
+          <Property Name="Item_Sub_Group" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location_master">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Location_Currency" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location_Currency_value" Type="float" />
+          <Property Name="Country_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Price_master">
+          <Key>
+            <PropertyRef Name="Item_code" />
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Item_code" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Supplier_ID" Type="int" Nullable="false" />
+          <Property Name="Supplier_Price" Type="float" />
+        </EntityType>
+        <EntityType Name="Sub_Group_master">
+          <Key>
+            <PropertyRef Name="Sub_Group_ID" />
+          </Key>
+          <Property Name="Sub_Group_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sub_Group_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Group_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier_Masters">
+          <Key>
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Supplier_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Supplier_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Credit_limit" Type="float" />
+          <Property Name="Payment_term" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active_status" Type="bit" />
+          <Property Name="Location_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Group_master_Division_master">
+          <End Role="Division_master" Type="Self.Division_master" Multiplicity="1" />
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division_master">
+              <PropertyRef Name="Division_ID" />
+            </Principal>
+            <Dependent Role="Group_master">
+              <PropertyRef Name="Division_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Details_Item_master">
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item_master">
+              <PropertyRef Name="Item_Code" />
+            </Principal>
+            <Dependent Role="Item_Details">
+              <PropertyRef Name="Item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Division_master">
+          <End Role="Division_master" Type="Self.Division_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division_master">
+              <PropertyRef Name="Division_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Group_master">
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Sub_Group_master">
+          <End Role="Sub_Group_master" Type="Self.Sub_Group_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Group_master">
+              <PropertyRef Name="Sub_Group_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Sub_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_master_Country_master">
+          <End Role="Country_master" Type="Self.Country_master" Multiplicity="1" />
+          <End Role="Location_master" Type="Self.Location_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_master">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Location_master">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_master_Item_master">
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_master">
+              <PropertyRef Name="Item_Code" />
+            </Principal>
+            <Dependent Role="Price_master">
+              <PropertyRef Name="Item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_master_Supplier_Masters">
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="1" />
+          <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier_Masters">
+              <PropertyRef Name="Supplier_ID" />
+            </Principal>
+            <Dependent Role="Price_master">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sub_Group_master_Group_master">
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="1" />
+          <End Role="Sub_Group_master" Type="Self.Sub_Group_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="Sub_Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_Masters_Location_master">
+          <End Role="Location_master" Type="Self.Location_master" Multiplicity="0..1" />
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location_master">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Supplier_Masters">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheskymartModelStoreContainer">
+          <EntitySet Name="Country_master" EntityType="Self.Country_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division_master" EntityType="Self.Division_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_master" EntityType="Self.Group_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_master" EntityType="Self.Item_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location_master" EntityType="Self.Location_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sub_Group_master" EntityType="Self.Sub_Group_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier_Masters" EntityType="Self.Supplier_Masters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Item_Details].[Item_code] AS [Item_code], 
+    [Item_Details].[Item_main_image] AS [Item_main_image], 
+    [Item_Details].[Item_image_1] AS [Item_image_1], 
+    [Item_Details].[Item_image_2] AS [Item_image_2], 
+    [Item_Details].[Item_image_3] AS [Item_image_3], 
+    [Item_Details].[Item_image_4] AS [Item_image_4], 
+    [Item_Details].[Item_image_5] AS [Item_image_5]
+    FROM [dbo].[Item_Details] AS [Item_Details]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Price_master" EntityType="Self.Price_master" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Price_master].[Item_code] AS [Item_code], 
+    [Price_master].[Supplier_ID] AS [Supplier_ID], 
+    [Price_master].[Supplier_Price] AS [Supplier_Price]
+    FROM [dbo].[Price_master] AS [Price_master]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Group_master_Division_master" Association="Self.FK_Group_master_Division_master">
+            <End Role="Division_master" EntitySet="Division_master" />
+            <End Role="Group_master" EntitySet="Group_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Details_Item_master" Association="Self.FK_Item_Details_Item_master">
+            <End Role="Item_master" EntitySet="Item_master" />
+            <End Role="Item_Details" EntitySet="Item_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Division_master" Association="Self.FK_Item_master_Division_master">
+            <End Role="Division_master" EntitySet="Division_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Group_master" Association="Self.FK_Item_master_Group_master">
+            <End Role="Group_master" EntitySet="Group_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Sub_Group_master" Association="Self.FK_Item_master_Sub_Group_master">
+            <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_master_Country_master" Association="Self.FK_Location_master_Country_master">
+            <End Role="Country_master" EntitySet="Country_master" />
+            <End Role="Location_master" EntitySet="Location_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_master_Item_master" Association="Self.FK_Price_master_Item_master">
+            <End Role="Item_master" EntitySet="Item_master" />
+            <End Role="Price_master" EntitySet="Price_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_master_Supplier_Masters" Association="Self.FK_Price_master_Supplier_Masters">
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+            <End Role="Price_master" EntitySet="Price_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sub_Group_master_Group_master" Association="Self.FK_Sub_Group_master_Group_master">
+            <End Role="Group_master" EntitySet="Group_master" />
+            <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Masters_Location_master" Association="Self.FK_Supplier_Masters_Location_master">
+            <End Role="Location_master" EntitySet="Location_master" />
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TheskymartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Country_master">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Location_master" Relationship="Self.FK_Location_master_Country_master" FromRole="Country_master" ToRole="Location_master" />
+        </EntityType>
+        <EntityType Name="Division_master">
+          <Key>
+            <PropertyRef Name="Division_ID" />
+          </Key>
+          <Property Name="Division_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Division_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group_master" Relationship="Self.FK_Group_master_Division_master" FromRole="Division_master" ToRole="Group_master" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_master_Division_master" FromRole="Division_master" ToRole="Item_master" />
+        </EntityType>
+        <EntityType Name="Group_master">
+          <Key>
+            <PropertyRef Name="Group_ID" />
+          </Key>
+          <Property Name="Group_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Division_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Division_master" Relationship="Self.FK_Group_master_Division_master" FromRole="Group_master" ToRole="Division_master" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_master_Group_master" FromRole="Group_master" ToRole="Item_master" />
+          <NavigationProperty Name="Sub_Group_master" Relationship="Self.FK_Sub_Group_master_Group_master" FromRole="Group_master" ToRole="Sub_Group_master" />
+        </EntityType>
+        <EntityType Name="Item_master">
+          <Key>
+            <PropertyRef Name="Item_Code" />
+          </Key>
+          <Property Name="Item_Code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item_Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Division" Type="Int32" Nullable="false" />
+          <Property Name="Item_Group" Type="Int32" Nullable="false" />
+          <Property Name="Item_Sub_Group" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Division_master" Relationship="Self.FK_Item_master_Division_master" FromRole="Item_master" ToRole="Division_master" />
+          <NavigationProperty Name="Group_master" Relationship="Self.FK_Item_master_Group_master" FromRole="Item_master" ToRole="Group_master" />
+          <NavigationProperty Name="Item_Details" Relationship="Self.FK_Item_Details_Item_master" FromRole="Item_master" ToRole="Item_Details" />
+          <NavigationProperty Name="Sub_Group_master" Relationship="Self.FK_Item_master_Sub_Group_master" FromRole="Item_master" ToRole="Sub_Group_master" />
+          <NavigationProperty Name="Price_master" Relationship="Self.FK_Price_master_Item_master" FromRole="Item_master" ToRole="Price_master" />
+        </EntityType>
+        <EntityType Name="Location_master">
+          <Key>
+            <PropertyRef Name="Location_ID" />
+          </Key>
+          <Property Name="Location_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location_Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location_Currency_value" Type="Double" />
+          <Property Name="Country_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country_master" Relationship="Self.FK_Location_master_Country_master" FromRole="Location_master" ToRole="Country_master" />
+          <NavigationProperty Name="Supplier_Masters" Relationship="Self.FK_Supplier_Masters_Location_master" FromRole="Location_master" ToRole="Supplier_Masters" />
+        </EntityType>
+        <EntityType Name="Sub_Group_master">
+          <Key>
+            <PropertyRef Name="Sub_Group_ID" />
+          </Key>
+          <Property Name="Sub_Group_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sub_Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Group_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group_master" Relationship="Self.FK_Sub_Group_master_Group_master" FromRole="Sub_Group_master" ToRole="Group_master" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_master_Sub_Group_master" FromRole="Sub_Group_master" ToRole="Item_master" />
+        </EntityType>
+        <EntityType Name="Supplier_Masters">
+          <Key>
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Supplier_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Credit_limit" Type="Double" />
+          <Property Name="Payment_term" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active_status" Type="Boolean" />
+          <Property Name="Location_ID" Type="Int32" />
+          <NavigationProperty Name="Location_master" Relationship="Self.FK_Supplier_Masters_Location_master" FromRole="Supplier_Masters" ToRole="Location_master" />
+          <NavigationProperty Name="Price_master" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Supplier_Masters" ToRole="Price_master" />
+        </EntityType>
+        <EntityType Name="Item_Details">
+          <Key>
+            <PropertyRef Name="Item_code" />
+          </Key>
+          <Property Name="Item_code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_main_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_Details_Item_master" FromRole="Item_Details" ToRole="Item_master" />
+        </EntityType>
+        <EntityType Name="Price_master">
+          <Key>
+            <PropertyRef Name="Item_code" />
+            <PropertyRef Name="Supplier_ID" />
+          </Key>
+          <Property Name="Item_code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+          <Property Name="Supplier_Price" Type="Double" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Price_master_Item_master" FromRole="Price_master" ToRole="Item_master" />
+          <NavigationProperty Name="Supplier_Masters" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Price_master" ToRole="Supplier_Masters" />
+        </EntityType>
+        <Association Name="FK_Location_master_Country_master">
+          <End Role="Country_master" Type="Self.Country_master" Multiplicity="1" />
+          <End Role="Location_master" Type="Self.Location_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country_master">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Location_master">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_master_Division_master">
+          <End Role="Division_master" Type="Self.Division_master" Multiplicity="1" />
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division_master">
+              <PropertyRef Name="Division_ID" />
+            </Principal>
+            <Dependent Role="Group_master">
+              <PropertyRef Name="Division_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Division_master">
+          <End Role="Division_master" Type="Self.Division_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division_master">
+              <PropertyRef Name="Division_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Division" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Group_master">
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sub_Group_master_Group_master">
+          <End Role="Group_master" Type="Self.Group_master" Multiplicity="1" />
+          <End Role="Sub_Group_master" Type="Self.Sub_Group_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Principal>
+            <Dependent Role="Sub_Group_master">
+              <PropertyRef Name="Group_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Details_Item_master">
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item_master">
+              <PropertyRef Name="Item_Code" />
+            </Principal>
+            <Dependent Role="Item_Details">
+              <PropertyRef Name="Item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_master_Sub_Group_master">
+          <End Role="Sub_Group_master" Type="Self.Sub_Group_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sub_Group_master">
+              <PropertyRef Name="Sub_Group_ID" />
+            </Principal>
+            <Dependent Role="Item_master">
+              <PropertyRef Name="Item_Sub_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_master_Item_master">
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_master">
+              <PropertyRef Name="Item_Code" />
+            </Principal>
+            <Dependent Role="Price_master">
+              <PropertyRef Name="Item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_Masters_Location_master">
+          <End Role="Location_master" Type="Self.Location_master" Multiplicity="0..1" />
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location_master">
+              <PropertyRef Name="Location_ID" />
+            </Principal>
+            <Dependent Role="Supplier_Masters">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Price_master_Supplier_Masters">
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="1" />
+          <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier_Masters">
+              <PropertyRef Name="Supplier_ID" />
+            </Principal>
+            <Dependent Role="Price_master">
+              <PropertyRef Name="Supplier_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TheskymartEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Country_master" EntityType="Self.Country_master" />
+          <EntitySet Name="Division_master" EntityType="Self.Division_master" />
+          <EntitySet Name="Group_master" EntityType="Self.Group_master" />
+          <EntitySet Name="Item_master" EntityType="Self.Item_master" />
+          <EntitySet Name="Location_master" EntityType="Self.Location_master" />
+          <EntitySet Name="Sub_Group_master" EntityType="Self.Sub_Group_master" />
+          <EntitySet Name="Supplier_Masters" EntityType="Self.Supplier_Masters" />
+          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" />
+          <EntitySet Name="Price_master" EntityType="Self.Price_master" />
+          <AssociationSet Name="FK_Location_master_Country_master" Association="Self.FK_Location_master_Country_master">
+            <End Role="Country_master" EntitySet="Country_master" />
+            <End Role="Location_master" EntitySet="Location_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_master_Division_master" Association="Self.FK_Group_master_Division_master">
+            <End Role="Division_master" EntitySet="Division_master" />
+            <End Role="Group_master" EntitySet="Group_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Division_master" Association="Self.FK_Item_master_Division_master">
+            <End Role="Division_master" EntitySet="Division_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Group_master" Association="Self.FK_Item_master_Group_master">
+            <End Role="Group_master" EntitySet="Group_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sub_Group_master_Group_master" Association="Self.FK_Sub_Group_master_Group_master">
+            <End Role="Group_master" EntitySet="Group_master" />
+            <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Details_Item_master" Association="Self.FK_Item_Details_Item_master">
+            <End Role="Item_master" EntitySet="Item_master" />
+            <End Role="Item_Details" EntitySet="Item_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_master_Sub_Group_master" Association="Self.FK_Item_master_Sub_Group_master">
+            <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
+            <End Role="Item_master" EntitySet="Item_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_master_Item_master" Association="Self.FK_Price_master_Item_master">
+            <End Role="Item_master" EntitySet="Item_master" />
+            <End Role="Price_master" EntitySet="Price_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Masters_Location_master" Association="Self.FK_Supplier_Masters_Location_master">
+            <End Role="Location_master" EntitySet="Location_master" />
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Price_master_Supplier_Masters" Association="Self.FK_Price_master_Supplier_Masters">
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+            <End Role="Price_master" EntitySet="Price_master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TheskymartModelStoreContainer" CdmEntityContainer="TheskymartEntities">
+          <EntitySetMapping Name="Country_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Country_master">
+              <MappingFragment StoreEntitySet="Country_master">
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Country_name" ColumnName="Country_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Division_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Division_master">
+              <MappingFragment StoreEntitySet="Division_master">
+                <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+                <ScalarProperty Name="Division_Name" ColumnName="Division_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Group_master">
+              <MappingFragment StoreEntitySet="Group_master">
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+                <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+                <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Item_master">
+              <MappingFragment StoreEntitySet="Item_master">
+                <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
+                <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+                <ScalarProperty Name="Item_Brand" ColumnName="Item_Brand" />
+                <ScalarProperty Name="Item_Description" ColumnName="Item_Description" />
+                <ScalarProperty Name="Item_Division" ColumnName="Item_Division" />
+                <ScalarProperty Name="Item_Group" ColumnName="Item_Group" />
+                <ScalarProperty Name="Item_Sub_Group" ColumnName="Item_Sub_Group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Location_master">
+              <MappingFragment StoreEntitySet="Location_master">
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Location_Name" ColumnName="Location_Name" />
+                <ScalarProperty Name="Location_Currency" ColumnName="Location_Currency" />
+                <ScalarProperty Name="Location_Currency_value" ColumnName="Location_Currency_value" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sub_Group_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Sub_Group_master">
+              <MappingFragment StoreEntitySet="Sub_Group_master">
+                <ScalarProperty Name="Sub_Group_ID" ColumnName="Sub_Group_ID" />
+                <ScalarProperty Name="Sub_Group_Name" ColumnName="Sub_Group_Name" />
+                <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier_Masters">
+            <EntityTypeMapping TypeName="TheskymartModel.Supplier_Masters">
+              <MappingFragment StoreEntitySet="Supplier_Masters">
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Supplier_name" ColumnName="Supplier_name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Credit_limit" ColumnName="Credit_limit" />
+                <ScalarProperty Name="Payment_term" ColumnName="Payment_term" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Active_status" ColumnName="Active_status" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_Details">
+            <EntityTypeMapping TypeName="TheskymartModel.Item_Details">
+              <MappingFragment StoreEntitySet="Item_Details">
+                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
+                <ScalarProperty Name="Item_main_image" ColumnName="Item_main_image" />
+                <ScalarProperty Name="Item_image_1" ColumnName="Item_image_1" />
+                <ScalarProperty Name="Item_image_2" ColumnName="Item_image_2" />
+                <ScalarProperty Name="Item_image_3" ColumnName="Item_image_3" />
+                <ScalarProperty Name="Item_image_4" ColumnName="Item_image_4" />
+                <ScalarProperty Name="Item_image_5" ColumnName="Item_image_5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Price_master">
+              <MappingFragment StoreEntitySet="Price_master">
+                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Supplier_Price" ColumnName="Supplier_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
