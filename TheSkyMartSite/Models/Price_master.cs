@@ -14,6 +14,7 @@ namespace TheSkyMartSite.Models
     
     public partial class Price_master
     {
+        public long sno { get; set; }
         public long Item_code { get; set; }
         public int Supplier_ID { get; set; }
         public Nullable<double> Supplier_Price { get; set; }

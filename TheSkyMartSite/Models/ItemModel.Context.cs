@@ -28,11 +28,11 @@ namespace TheSkyMartSite.Models
         public virtual DbSet<Country_master> Country_master { get; set; }
         public virtual DbSet<Division_master> Division_master { get; set; }
         public virtual DbSet<Group_master> Group_master { get; set; }
+        public virtual DbSet<Item_Details> Item_Details { get; set; }
         public virtual DbSet<Item_master> Item_master { get; set; }
         public virtual DbSet<Location_master> Location_master { get; set; }
+        public virtual DbSet<Price_master> Price_master { get; set; }
         public virtual DbSet<Sub_Group_master> Sub_Group_master { get; set; }
         public virtual DbSet<Supplier_Masters> Supplier_Masters { get; set; }
-        public virtual DbSet<Item_Details> Item_Details { get; set; }
-        public virtual DbSet<Price_master> Price_master { get; set; }
     }
 }

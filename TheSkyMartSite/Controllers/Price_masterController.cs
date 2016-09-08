@@ -49,7 +49,7 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
+        public ActionResult Create([Bind(Include = "sno,Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
+        public ActionResult Edit([Bind(Include = "sno,Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
         {
             if (ModelState.IsValid)
             {

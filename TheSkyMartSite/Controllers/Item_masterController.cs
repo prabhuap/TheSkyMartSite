@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -51,11 +52,16 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Item_Code,Item_Name,Item_Brand,Item_Description,Item_Division,Item_Group,Item_Sub_Group")] Item_master item_master)
+        public ActionResult Create([Bind(Include = "Item_Code,Item_Name,Item_Brand,Item_Description,Item_Division,Item_Group,Item_Sub_Group")] Item_master item_master, [Bind(Include = "Item_main_image")] Item_Details item_details_obj)
         {
             if (ModelState.IsValid)
             {
                 db.Item_master.Add(item_master);
+                db.SaveChanges();
+                long id = item_master.Item_Code;
+
+                item_details_obj.Item_code = id;
+                db.Item_Details.Add(item_details_obj);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -177,5 +183,6 @@ namespace TheSkyMartSite.Controllers
         {
             return db.Sub_Group_master.Where(m => m.Group_ID == GroupID).ToList();
         }
+
     }
 }

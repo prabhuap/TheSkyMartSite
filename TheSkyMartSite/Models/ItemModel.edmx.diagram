@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="592f66ed094549f7a00f1130947a434a" Name="Diagram1">
-        <EntityTypeShape EntityType="TheskymartModel.Country_master" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Division_master" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Group_master" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Item_master" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Location_master" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Sub_Group_master" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Supplier_Masters" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Item_Details" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TheskymartModel.Price_master" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
+      <Diagram DiagramId="ac40cc39d2ac4f859bb1014f175289fb" Name="Diagram1">
+        <EntityTypeShape EntityType="TheskymartModel.Country_master" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Division_master" Width="1.5" PointX="1" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Group_master" Width="1.5" PointX="1" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Item_Details" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Item_master" Width="1.5" PointX="3.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Location_master" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Price_master" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Sub_Group_master" Width="1.5" PointX="1" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TheskymartModel.Supplier_Masters" Width="1.5" PointX="10.5" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="TheskymartModel.FK_Location_master_Country_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Group_master_Division_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Item_master_Division_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Item_master_Group_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Sub_Group_master_Group_master" ManuallyRouted="false" />
-        <AssociationConnector Association="TheskymartModel.FK_Item_Details_Item_master" ManuallyRouted="false" />
+        <AssociationConnector Association="TheskymartModel.FK_Item_Details_Item_master1" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Item_master_Sub_Group_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Price_master_Item_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Supplier_Masters_Location_master" ManuallyRouted="false" />

@@ -14,6 +14,7 @@ namespace TheSkyMartSite.Models
     
     public partial class Item_Details
     {
+        public long Sno { get; set; }
         public long Item_code { get; set; }
         public string Item_main_image { get; set; }
         public string Item_image_1 { get; set; }

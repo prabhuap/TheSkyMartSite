@@ -17,6 +17,7 @@ namespace TheSkyMartSite.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item_master()
         {
+            this.Item_Details = new HashSet<Item_Details>();
             this.Price_master = new HashSet<Price_master>();
         }
     
@@ -30,7 +31,8 @@ namespace TheSkyMartSite.Models
     
         public virtual Division_master Division_master { get; set; }
         public virtual Group_master Group_master { get; set; }
-        public virtual Item_Details Item_Details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item_Details> Item_Details { get; set; }
         public virtual Sub_Group_master Sub_Group_master { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Price_master> Price_master { get; set; }

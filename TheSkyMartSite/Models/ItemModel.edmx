@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TheskymartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TheskymartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country_master">
           <Key>
             <PropertyRef Name="Country_ID" />
@@ -27,13 +27,12 @@
           <Property Name="Group_Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Division_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Theskymart.dbo.Item_Details' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Item_Details">
           <Key>
-            <PropertyRef Name="Item_code" />
+            <PropertyRef Name="Sno" />
           </Key>
-          <Property Name="Item_code" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_code" Type="bigint" Nullable="false" />
           <Property Name="Item_main_image" Type="nvarchar" MaxLength="50" />
           <Property Name="Item_image_1" Type="nvarchar" MaxLength="50" />
           <Property Name="Item_image_2" Type="nvarchar" MaxLength="50" />
@@ -63,14 +62,12 @@ warning 6002: The table/view 'Theskymart.dbo.Item_Details' does not have a prima
           <Property Name="Location_Currency_value" Type="float" />
           <Property Name="Country_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Price_master">
           <Key>
-            <PropertyRef Name="Item_code" />
-            <PropertyRef Name="Supplier_ID" />
+            <PropertyRef Name="sno" />
           </Key>
-          <Property Name="Item_code" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item_code" Type="bigint" Nullable="false" />
           <Property Name="Supplier_ID" Type="int" Nullable="false" />
           <Property Name="Supplier_Price" Type="float" />
         </EntityType>
@@ -110,9 +107,9 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Item_Details_Item_master">
+        <Association Name="FK_Item_Details_Item_master1">
           <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
-          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="0..1" />
+          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item_master">
               <PropertyRef Name="Item_Code" />
@@ -222,33 +219,17 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <EntitySet Name="Country_master" EntityType="Self.Country_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Division_master" EntityType="Self.Division_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group_master" EntityType="Self.Group_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item_master" EntityType="Self.Item_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location_master" EntityType="Self.Location_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price_master" EntityType="Self.Price_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sub_Group_master" EntityType="Self.Sub_Group_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier_Masters" EntityType="Self.Supplier_Masters" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Item_Details].[Item_code] AS [Item_code], 
-    [Item_Details].[Item_main_image] AS [Item_main_image], 
-    [Item_Details].[Item_image_1] AS [Item_image_1], 
-    [Item_Details].[Item_image_2] AS [Item_image_2], 
-    [Item_Details].[Item_image_3] AS [Item_image_3], 
-    [Item_Details].[Item_image_4] AS [Item_image_4], 
-    [Item_Details].[Item_image_5] AS [Item_image_5]
-    FROM [dbo].[Item_Details] AS [Item_Details]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Price_master" EntityType="Self.Price_master" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Price_master].[Item_code] AS [Item_code], 
-    [Price_master].[Supplier_ID] AS [Supplier_ID], 
-    [Price_master].[Supplier_Price] AS [Supplier_Price]
-    FROM [dbo].[Price_master] AS [Price_master]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Group_master_Division_master" Association="Self.FK_Group_master_Division_master">
             <End Role="Division_master" EntitySet="Division_master" />
             <End Role="Group_master" EntitySet="Group_master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_Details_Item_master" Association="Self.FK_Item_Details_Item_master">
+          <AssociationSet Name="FK_Item_Details_Item_master1" Association="Self.FK_Item_Details_Item_master1">
             <End Role="Item_master" EntitySet="Item_master" />
             <End Role="Item_Details" EntitySet="Item_Details" />
           </AssociationSet>
@@ -285,7 +266,8 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
             <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TheskymartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -317,6 +299,20 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_master_Group_master" FromRole="Group_master" ToRole="Item_master" />
           <NavigationProperty Name="Sub_Group_master" Relationship="Self.FK_Sub_Group_master_Group_master" FromRole="Group_master" ToRole="Sub_Group_master" />
         </EntityType>
+        <EntityType Name="Item_Details">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_code" Type="Int64" Nullable="false" />
+          <Property Name="Item_main_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_Details_Item_master1" FromRole="Item_Details" ToRole="Item_master" />
+        </EntityType>
         <EntityType Name="Item_master">
           <Key>
             <PropertyRef Name="Item_Code" />
@@ -330,7 +326,7 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <Property Name="Item_Sub_Group" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Division_master" Relationship="Self.FK_Item_master_Division_master" FromRole="Item_master" ToRole="Division_master" />
           <NavigationProperty Name="Group_master" Relationship="Self.FK_Item_master_Group_master" FromRole="Item_master" ToRole="Group_master" />
-          <NavigationProperty Name="Item_Details" Relationship="Self.FK_Item_Details_Item_master" FromRole="Item_master" ToRole="Item_Details" />
+          <NavigationProperty Name="Item_Details" Relationship="Self.FK_Item_Details_Item_master1" FromRole="Item_master" ToRole="Item_Details" />
           <NavigationProperty Name="Sub_Group_master" Relationship="Self.FK_Item_master_Sub_Group_master" FromRole="Item_master" ToRole="Sub_Group_master" />
           <NavigationProperty Name="Price_master" Relationship="Self.FK_Price_master_Item_master" FromRole="Item_master" ToRole="Price_master" />
         </EntityType>
@@ -345,6 +341,17 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <Property Name="Country_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Country_master" Relationship="Self.FK_Location_master_Country_master" FromRole="Location_master" ToRole="Country_master" />
           <NavigationProperty Name="Supplier_Masters" Relationship="Self.FK_Supplier_Masters_Location_master" FromRole="Location_master" ToRole="Supplier_Masters" />
+        </EntityType>
+        <EntityType Name="Price_master">
+          <Key>
+            <PropertyRef Name="sno" />
+          </Key>
+          <Property Name="sno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_code" Type="Int64" Nullable="false" />
+          <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+          <Property Name="Supplier_Price" Type="Double" />
+          <NavigationProperty Name="Item_master" Relationship="Self.FK_Price_master_Item_master" FromRole="Price_master" ToRole="Item_master" />
+          <NavigationProperty Name="Supplier_Masters" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Price_master" ToRole="Supplier_Masters" />
         </EntityType>
         <EntityType Name="Sub_Group_master">
           <Key>
@@ -373,30 +380,6 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <Property Name="Location_ID" Type="Int32" />
           <NavigationProperty Name="Location_master" Relationship="Self.FK_Supplier_Masters_Location_master" FromRole="Supplier_Masters" ToRole="Location_master" />
           <NavigationProperty Name="Price_master" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Supplier_Masters" ToRole="Price_master" />
-        </EntityType>
-        <EntityType Name="Item_Details">
-          <Key>
-            <PropertyRef Name="Item_code" />
-          </Key>
-          <Property Name="Item_code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Item_main_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Item_image_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Item_image_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Item_image_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Item_image_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Item_image_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Item_master" Relationship="Self.FK_Item_Details_Item_master" FromRole="Item_Details" ToRole="Item_master" />
-        </EntityType>
-        <EntityType Name="Price_master">
-          <Key>
-            <PropertyRef Name="Item_code" />
-            <PropertyRef Name="Supplier_ID" />
-          </Key>
-          <Property Name="Item_code" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
-          <Property Name="Supplier_Price" Type="Double" />
-          <NavigationProperty Name="Item_master" Relationship="Self.FK_Price_master_Item_master" FromRole="Price_master" ToRole="Item_master" />
-          <NavigationProperty Name="Supplier_Masters" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Price_master" ToRole="Supplier_Masters" />
         </EntityType>
         <Association Name="FK_Location_master_Country_master">
           <End Role="Country_master" Type="Self.Country_master" Multiplicity="1" />
@@ -458,9 +441,9 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Item_Details_Item_master">
+        <Association Name="FK_Item_Details_Item_master1">
           <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
-          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="0..1" />
+          <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item_master">
               <PropertyRef Name="Item_Code" />
@@ -522,12 +505,12 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
           <EntitySet Name="Country_master" EntityType="Self.Country_master" />
           <EntitySet Name="Division_master" EntityType="Self.Division_master" />
           <EntitySet Name="Group_master" EntityType="Self.Group_master" />
+          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" />
           <EntitySet Name="Item_master" EntityType="Self.Item_master" />
           <EntitySet Name="Location_master" EntityType="Self.Location_master" />
+          <EntitySet Name="Price_master" EntityType="Self.Price_master" />
           <EntitySet Name="Sub_Group_master" EntityType="Self.Sub_Group_master" />
           <EntitySet Name="Supplier_Masters" EntityType="Self.Supplier_Masters" />
-          <EntitySet Name="Item_Details" EntityType="Self.Item_Details" />
-          <EntitySet Name="Price_master" EntityType="Self.Price_master" />
           <AssociationSet Name="FK_Location_master_Country_master" Association="Self.FK_Location_master_Country_master">
             <End Role="Country_master" EntitySet="Country_master" />
             <End Role="Location_master" EntitySet="Location_master" />
@@ -548,7 +531,7 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
             <End Role="Group_master" EntitySet="Group_master" />
             <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Item_Details_Item_master" Association="Self.FK_Item_Details_Item_master">
+          <AssociationSet Name="FK_Item_Details_Item_master1" Association="Self.FK_Item_Details_Item_master1">
             <End Role="Item_master" EntitySet="Item_master" />
             <End Role="Item_Details" EntitySet="Item_Details" />
           </AssociationSet>
@@ -600,6 +583,20 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Item_Details">
+            <EntityTypeMapping TypeName="TheskymartModel.Item_Details">
+              <MappingFragment StoreEntitySet="Item_Details">
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
+                <ScalarProperty Name="Item_main_image" ColumnName="Item_main_image" />
+                <ScalarProperty Name="Item_image_1" ColumnName="Item_image_1" />
+                <ScalarProperty Name="Item_image_2" ColumnName="Item_image_2" />
+                <ScalarProperty Name="Item_image_3" ColumnName="Item_image_3" />
+                <ScalarProperty Name="Item_image_4" ColumnName="Item_image_4" />
+                <ScalarProperty Name="Item_image_5" ColumnName="Item_image_5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Item_master">
             <EntityTypeMapping TypeName="TheskymartModel.Item_master">
               <MappingFragment StoreEntitySet="Item_master">
@@ -621,6 +618,16 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
                 <ScalarProperty Name="Location_Currency" ColumnName="Location_Currency" />
                 <ScalarProperty Name="Location_Currency_value" ColumnName="Location_Currency_value" />
                 <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price_master">
+            <EntityTypeMapping TypeName="TheskymartModel.Price_master">
+              <MappingFragment StoreEntitySet="Price_master">
+                <ScalarProperty Name="sno" ColumnName="sno" />
+                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Supplier_Price" ColumnName="Supplier_Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -647,28 +654,6 @@ warning 6002: The table/view 'Theskymart.dbo.Price_master' does not have a prima
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Active_status" ColumnName="Active_status" />
                 <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Item_Details">
-            <EntityTypeMapping TypeName="TheskymartModel.Item_Details">
-              <MappingFragment StoreEntitySet="Item_Details">
-                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
-                <ScalarProperty Name="Item_main_image" ColumnName="Item_main_image" />
-                <ScalarProperty Name="Item_image_1" ColumnName="Item_image_1" />
-                <ScalarProperty Name="Item_image_2" ColumnName="Item_image_2" />
-                <ScalarProperty Name="Item_image_3" ColumnName="Item_image_3" />
-                <ScalarProperty Name="Item_image_4" ColumnName="Item_image_4" />
-                <ScalarProperty Name="Item_image_5" ColumnName="Item_image_5" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Price_master">
-            <EntityTypeMapping TypeName="TheskymartModel.Price_master">
-              <MappingFragment StoreEntitySet="Price_master">
-                <ScalarProperty Name="Item_code" ColumnName="Item_code" />
-                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
-                <ScalarProperty Name="Supplier_Price" ColumnName="Supplier_Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

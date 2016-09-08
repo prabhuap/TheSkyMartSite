@@ -464,7 +464,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\startstop-slider.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -533,16 +535,16 @@
     <Content Include="Views\Location_master\Details.cshtml" />
     <Content Include="Views\Location_master\Edit.cshtml" />
     <Content Include="Views\Location_master\Index.cshtml" />
-    <Content Include="Views\Price_master\Create.cshtml" />
-    <Content Include="Views\Price_master\Delete.cshtml" />
-    <Content Include="Views\Price_master\Details.cshtml" />
-    <Content Include="Views\Price_master\Edit.cshtml" />
-    <Content Include="Views\Price_master\Index.cshtml" />
     <Content Include="Views\Supplier_Masters\Create.cshtml" />
     <Content Include="Views\Supplier_Masters\Delete.cshtml" />
     <Content Include="Views\Supplier_Masters\Details.cshtml" />
     <Content Include="Views\Supplier_Masters\Edit.cshtml" />
     <Content Include="Views\Supplier_Masters\Index.cshtml" />
+    <Content Include="Views\Price_master\Create.cshtml" />
+    <Content Include="Views\Price_master\Delete.cshtml" />
+    <Content Include="Views\Price_master\Details.cshtml" />
+    <Content Include="Views\Price_master\Edit.cshtml" />
+    <Content Include="Views\Price_master\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

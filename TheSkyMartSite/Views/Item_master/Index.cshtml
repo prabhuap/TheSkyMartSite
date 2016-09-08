@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<TheSkyMartSite.Models.Item_master>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -25,9 +19,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Group_master.Group_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Item_Details.Item_main_image)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Sub_Group_master.Sub_Group_Name)
@@ -51,9 +42,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Group_master.Group_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Item_Details.Item_main_image)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Sub_Group_master.Sub_Group_Name)

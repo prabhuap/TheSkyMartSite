@@ -48,7 +48,7 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Item_code,Item_main_image,Item_image_1,Item_image_2,Item_image_3,Item_image_4,Item_image_5")] Item_Details item_Details)
+        public ActionResult Create([Bind(Include = "Sno,Item_code,Item_main_image,Item_image_1,Item_image_2,Item_image_3,Item_image_4,Item_image_5")] Item_Details item_Details)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Item_code,Item_main_image,Item_image_1,Item_image_2,Item_image_3,Item_image_4,Item_image_5")] Item_Details item_Details)
+        public ActionResult Edit([Bind(Include = "Sno,Item_code,Item_main_image,Item_image_1,Item_image_2,Item_image_3,Item_image_4,Item_image_5")] Item_Details item_Details)
         {
             if (ModelState.IsValid)
             {
