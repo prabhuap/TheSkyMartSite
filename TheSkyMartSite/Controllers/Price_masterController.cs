@@ -49,18 +49,35 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "sno,Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
+        //public ActionResult Create([Bind(Include = "sno,Item_code,Supplier_ID,Supplier_Price")] Price_master price_master)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Price_master.Add(price_master);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.Item_code = new SelectList(db.Item_master, "Item_Code", "Item_Name", price_master.Item_code);
+        //    ViewBag.Supplier_ID = new SelectList(db.Supplier_Masters, "Supplier_ID", "Supplier_name", price_master.Supplier_ID);
+        //    return View(price_master);
+        //}
+        public ActionResult Create(IEnumerable<Price_master> _price_master)
         {
             if (ModelState.IsValid)
             {
-                db.Price_master.Add(price_master);
-                db.SaveChanges();
+                foreach (var item in _price_master)
+                    {
+
+                    db.Price_master.Add(item);
+                    db.SaveChanges();
+
+                }
+            
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Item_code = new SelectList(db.Item_master, "Item_Code", "Item_Name", price_master.Item_code);
-            ViewBag.Supplier_ID = new SelectList(db.Supplier_Masters, "Supplier_ID", "Supplier_name", price_master.Supplier_ID);
-            return View(price_master);
+         return View(_price_master);
         }
 
         // GET: Price_master/Edit/5

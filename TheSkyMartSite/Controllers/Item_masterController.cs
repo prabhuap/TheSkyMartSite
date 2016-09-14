@@ -44,6 +44,7 @@ namespace TheSkyMartSite.Controllers
             ViewBag.Item_Group = new SelectList(db.Group_master, "Group_ID", "Group_Name");
             ViewBag.Item_Code = new SelectList(db.Item_Details, "Item_code", "Item_main_image");
             ViewBag.Item_Sub_Group = new SelectList(db.Sub_Group_master, "Sub_Group_ID", "Sub_Group_Name");
+            ViewBag.Supplier_ID = new SelectList(db.Supplier_Masters, "Supplier_ID", "Supplier_name");
             return View();
         }
 
@@ -52,7 +53,7 @@ namespace TheSkyMartSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Item_Code,Item_Name,Item_Brand,Item_Description,Item_Division,Item_Group,Item_Sub_Group")] Item_master item_master, [Bind(Include = "Item_main_image")] Item_Details item_details_obj)
+        public ActionResult Create([Bind(Include = "Item_Code,Item_Name,Item_Brand,Item_Description,Item_Division,Item_Group,Item_Sub_Group")] Item_master item_master, HttpPostedFileBase Item_main_image, HttpPostedFileBase Image_1, HttpPostedFileBase Image_2, HttpPostedFileBase Image_3, HttpPostedFileBase Image_4, HttpPostedFileBase Image_5, Int32 Supplier_ID, float Item_price)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +61,75 @@ namespace TheSkyMartSite.Controllers
                 db.SaveChanges();
                 long id = item_master.Item_Code;
 
+
+                Price_master price_obj = new Price_master();
+                price_obj.Item_code = id;
+                price_obj.Supplier_ID = Supplier_ID;
+                price_obj.Supplier_Price = Item_price;
+                db.Price_master.Add(price_obj);
+                db.SaveChanges();
+
+                Item_Details item_details_obj = new Item_Details();
+
                 item_details_obj.Item_code = id;
+                //Saving File to server
+                if (Item_main_image !=null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Main"+ System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_main_image = id.ToString() + "_Main" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+                if (Image_1 != null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_image_1 = id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+                if (Image_2 != null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_image_2 = id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+                if (Image_3 != null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_image_3 = id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+                if (Image_4 != null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_image_4 = id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+                if (Image_5 != null)
+                {
+
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Item_main_image.FileName));
+                    Item_main_image.SaveAs(path);
+                    item_details_obj.Item_image_5 = id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Item_main_image.FileName);
+
+
+                }
+
+
+
                 db.Item_Details.Add(item_details_obj);
                 db.SaveChanges();
                 return RedirectToAction("Index");

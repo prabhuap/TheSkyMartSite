@@ -175,6 +175,7 @@
     <Compile Include="Controllers\Group_masterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Item_DetailsController.cs" />
+    <Compile Include="Controllers\Item_master1Controller.cs" />
     <Compile Include="Controllers\Item_masterController.cs" />
     <Compile Include="Controllers\Location_masterController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\Price_master.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Price_master_list.cs" />
     <Compile Include="Models\Sub_Group_master.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
@@ -545,6 +547,11 @@
     <Content Include="Views\Price_master\Details.cshtml" />
     <Content Include="Views\Price_master\Edit.cshtml" />
     <Content Include="Views\Price_master\Index.cshtml" />
+    <Content Include="Views\Item_master1\Create.cshtml" />
+    <Content Include="Views\Item_master1\Delete.cshtml" />
+    <Content Include="Views\Item_master1\Details.cshtml" />
+    <Content Include="Views\Item_master1\Edit.cshtml" />
+    <Content Include="Views\Item_master1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

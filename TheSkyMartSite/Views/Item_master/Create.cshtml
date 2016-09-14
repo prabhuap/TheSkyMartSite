@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Item_master", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Item_master</h4>
         <hr />
@@ -64,9 +64,53 @@
         </div>
 
         <div class="form-group">
+            @Html.Label( "Select Supplier", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Item_Details.Item_main_image, new { htmlAttributes = new { @class = "form-control" } })*@
-                <input type="file" name="Item_main_image" id="Item_main_image" style="width: 100%;" />
+                @Html.DropDownList("Supplier_ID", null, htmlAttributes: new { @class = "form-control" })
+           </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Item_price" id="Item_price" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Main Image", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 <input type="file" name="Item_main_image" id="Item_main_image" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Image 1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_1" id="Image_1" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Image 2", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_2" id="Image_2" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Image 3", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_3" id="Image_3" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Image 4", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_4" id="Image_4" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Image 5", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_5" id="Image_5" class="form-control" style="width: 100%; " />
             </div>
         </div>
 
