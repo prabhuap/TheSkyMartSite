@@ -12,14 +12,15 @@ namespace TheSkyMartSite.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier_Masters
+    public partial class V_Home_Page
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier_Masters()
-        {
-            this.Price_master = new HashSet<Price_master>();
-        }
-    
+        public long Item_Code { get; set; }
+        public string Item_Name { get; set; }
+        public string Item_Brand { get; set; }
+        public string Division_Name { get; set; }
+        public string Group_Name { get; set; }
+        public string Sub_Group_Name { get; set; }
+        public Nullable<double> Supplier_Price { get; set; }
         public int Supplier_ID { get; set; }
         public string Supplier_name { get; set; }
         public string Mobile { get; set; }
@@ -38,10 +39,13 @@ namespace TheSkyMartSite.Models
         public string Slide_3 { get; set; }
         public string Slide_4 { get; set; }
         public string Slide_5 { get; set; }
-    
-        public virtual Location_master Location_master { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Price_master> Price_master { get; set; }
-        public virtual Category_Master Category_Master { get; set; }
+        public long Sno { get; set; }
+        public long Expr1 { get; set; }
+        public string Item_main_image { get; set; }
+        public string Item_image_1 { get; set; }
+        public string Item_image_2 { get; set; }
+        public string Item_image_3 { get; set; }
+        public string Item_image_4 { get; set; }
+        public string Item_image_5 { get; set; }
     }
 }

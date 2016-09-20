@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TheskymartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TheskymartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category_Master">
+          <Key>
+            <PropertyRef Name="Category_ID" />
+          </Key>
+          <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Country_master">
           <Key>
             <PropertyRef Name="Country_ID" />
@@ -94,6 +101,57 @@
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Active_status" Type="bit" />
           <Property Name="Location_ID" Type="int" />
+          <Property Name="Category_ID" Type="int" Nullable="false" />
+          <Property Name="Logo_image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_5" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Theskymart.dbo.V_Home_Page' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Home_Page">
+          <Key>
+            <PropertyRef Name="Item_Code" />
+            <PropertyRef Name="Supplier_ID" />
+            <PropertyRef Name="Category_ID" />
+            <PropertyRef Name="Sno" />
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="Item_Code" Type="bigint" Nullable="false" />
+          <Property Name="Item_Name" Type="nvarchar(max)" />
+          <Property Name="Item_Brand" Type="nvarchar(max)" />
+          <Property Name="Division_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Group_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sub_Group_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Supplier_Price" Type="float" />
+          <Property Name="Supplier_ID" Type="int" Nullable="false" />
+          <Property Name="Supplier_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="Credit_limit" Type="float" />
+          <Property Name="Payment_term" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Active_status" Type="bit" />
+          <Property Name="Location_ID" Type="int" />
+          <Property Name="Category_ID" Type="int" Nullable="false" />
+          <Property Name="Logo_image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Slide_5" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sno" Type="bigint" Nullable="false" />
+          <Property Name="Expr1" Type="bigint" Nullable="false" />
+          <Property Name="Item_main_image" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Item_image_5" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Group_master_Division_master">
           <End Role="Division_master" Type="Self.Division_master" Multiplicity="1" />
@@ -108,7 +166,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_Details_Item_master1">
-          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Item_Details" Type="Self.Item_Details" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item_master">
@@ -168,7 +228,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Price_master_Item_master">
-          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1" />
+          <End Role="Item_master" Type="Self.Item_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item_master">
@@ -180,7 +242,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Price_master_Supplier_Masters">
-          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="1" />
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Price_master" Type="Self.Price_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Supplier_Masters">
@@ -203,6 +267,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Supplier_Masters_Category_Master">
+          <End Role="Category_Master" Type="Self.Category_Master" Multiplicity="1" />
+          <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Master">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Supplier_Masters">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Supplier_Masters_Location_master">
           <End Role="Location_master" Type="Self.Location_master" Multiplicity="0..1" />
           <End Role="Supplier_Masters" Type="Self.Supplier_Masters" Multiplicity="*" />
@@ -216,6 +292,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TheskymartModelStoreContainer">
+          <EntitySet Name="Category_Master" EntityType="Self.Category_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country_master" EntityType="Self.Country_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Division_master" EntityType="Self.Division_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group_master" EntityType="Self.Group_master" Schema="dbo" store:Type="Tables" />
@@ -225,6 +302,43 @@
           <EntitySet Name="Price_master" EntityType="Self.Price_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sub_Group_master" EntityType="Self.Sub_Group_master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier_Masters" EntityType="Self.Supplier_Masters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_Home_Page" EntityType="Self.V_Home_Page" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Home_Page].[Item_Code] AS [Item_Code], 
+    [V_Home_Page].[Item_Name] AS [Item_Name], 
+    [V_Home_Page].[Item_Brand] AS [Item_Brand], 
+    [V_Home_Page].[Division_Name] AS [Division_Name], 
+    [V_Home_Page].[Group_Name] AS [Group_Name], 
+    [V_Home_Page].[Sub_Group_Name] AS [Sub_Group_Name], 
+    [V_Home_Page].[Supplier_Price] AS [Supplier_Price], 
+    [V_Home_Page].[Supplier_ID] AS [Supplier_ID], 
+    [V_Home_Page].[Supplier_name] AS [Supplier_name], 
+    [V_Home_Page].[Mobile] AS [Mobile], 
+    [V_Home_Page].[Telephone] AS [Telephone], 
+    [V_Home_Page].[Fax] AS [Fax], 
+    [V_Home_Page].[Email_id] AS [Email_id], 
+    [V_Home_Page].[Credit_limit] AS [Credit_limit], 
+    [V_Home_Page].[Payment_term] AS [Payment_term], 
+    [V_Home_Page].[Address] AS [Address], 
+    [V_Home_Page].[Active_status] AS [Active_status], 
+    [V_Home_Page].[Location_ID] AS [Location_ID], 
+    [V_Home_Page].[Category_ID] AS [Category_ID], 
+    [V_Home_Page].[Logo_image] AS [Logo_image], 
+    [V_Home_Page].[Slide_1] AS [Slide_1], 
+    [V_Home_Page].[Slide_2] AS [Slide_2], 
+    [V_Home_Page].[Slide_3] AS [Slide_3], 
+    [V_Home_Page].[Slide_4] AS [Slide_4], 
+    [V_Home_Page].[Slide_5] AS [Slide_5], 
+    [V_Home_Page].[Sno] AS [Sno], 
+    [V_Home_Page].[Expr1] AS [Expr1], 
+    [V_Home_Page].[Item_main_image] AS [Item_main_image], 
+    [V_Home_Page].[Item_image_1] AS [Item_image_1], 
+    [V_Home_Page].[Item_image_2] AS [Item_image_2], 
+    [V_Home_Page].[Item_image_3] AS [Item_image_3], 
+    [V_Home_Page].[Item_image_4] AS [Item_image_4], 
+    [V_Home_Page].[Item_image_5] AS [Item_image_5]
+    FROM [dbo].[V_Home_Page] AS [V_Home_Page]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Group_master_Division_master" Association="Self.FK_Group_master_Division_master">
             <End Role="Division_master" EntitySet="Division_master" />
             <End Role="Group_master" EntitySet="Group_master" />
@@ -261,13 +375,16 @@
             <End Role="Group_master" EntitySet="Group_master" />
             <End Role="Sub_Group_master" EntitySet="Sub_Group_master" />
           </AssociationSet>
+          <AssociationSet Name="FK_Supplier_Masters_Category_Master" Association="Self.FK_Supplier_Masters_Category_Master">
+            <End Role="Category_Master" EntitySet="Category_Master" />
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+          </AssociationSet>
           <AssociationSet Name="FK_Supplier_Masters_Location_master" Association="Self.FK_Supplier_Masters_Location_master">
             <End Role="Location_master" EntitySet="Location_master" />
             <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TheskymartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -380,6 +497,14 @@
           <Property Name="Location_ID" Type="Int32" />
           <NavigationProperty Name="Location_master" Relationship="Self.FK_Supplier_Masters_Location_master" FromRole="Supplier_Masters" ToRole="Location_master" />
           <NavigationProperty Name="Price_master" Relationship="Self.FK_Price_master_Supplier_Masters" FromRole="Supplier_Masters" ToRole="Price_master" />
+          <Property Name="Category_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category_Master" Relationship="TheskymartModel.FK_Supplier_Masters_Category_Master" FromRole="Supplier_Masters" ToRole="Category_Master" />
+          <Property Name="Logo_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Location_master_Country_master">
           <End Role="Country_master" Type="Self.Country_master" Multiplicity="1" />
@@ -551,7 +676,75 @@
             <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
             <End Role="Price_master" EntitySet="Price_master" />
           </AssociationSet>
+          <EntitySet Name="Category_Master" EntityType="TheskymartModel.Category_Master" />
+          <AssociationSet Name="FK_Supplier_Masters_Category_Master" Association="TheskymartModel.FK_Supplier_Masters_Category_Master">
+            <End Role="Category_Master" EntitySet="Category_Master" />
+            <End Role="Supplier_Masters" EntitySet="Supplier_Masters" />
+          </AssociationSet>
+          <EntitySet Name="V_Home_Page" EntityType="TheskymartModel.V_Home_Page" />
         </EntityContainer>
+        <EntityType Name="Category_Master">
+          <Key>
+            <PropertyRef Name="Category_ID" />
+          </Key>
+          <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Supplier_Masters" Relationship="TheskymartModel.FK_Supplier_Masters_Category_Master" FromRole="Category_Master" ToRole="Supplier_Masters" />
+        </EntityType>
+        <Association Name="FK_Supplier_Masters_Category_Master">
+          <End Type="TheskymartModel.Category_Master" Role="Category_Master" Multiplicity="1" />
+          <End Type="TheskymartModel.Supplier_Masters" Role="Supplier_Masters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_Master">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Supplier_Masters">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="V_Home_Page">
+          <Key>
+            <PropertyRef Name="Item_Code" />
+            <PropertyRef Name="Supplier_ID" />
+            <PropertyRef Name="Category_ID" />
+            <PropertyRef Name="Sno" />
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="Item_Code" Type="Int64" Nullable="false" />
+          <Property Name="Item_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Item_Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Division_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Sub_Group_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Supplier_Price" Type="Double" />
+          <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+          <Property Name="Supplier_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Credit_limit" Type="Double" />
+          <Property Name="Payment_term" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Active_status" Type="Boolean" />
+          <Property Name="Location_ID" Type="Int32" />
+          <Property Name="Category_ID" Type="Int32" Nullable="false" />
+          <Property Name="Logo_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Slide_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sno" Type="Int64" Nullable="false" />
+          <Property Name="Expr1" Type="Int64" Nullable="false" />
+          <Property Name="Item_main_image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Item_image_5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -643,6 +836,13 @@
           <EntitySetMapping Name="Supplier_Masters">
             <EntityTypeMapping TypeName="TheskymartModel.Supplier_Masters">
               <MappingFragment StoreEntitySet="Supplier_Masters">
+                <ScalarProperty Name="Slide_5" ColumnName="Slide_5" />
+                <ScalarProperty Name="Slide_4" ColumnName="Slide_4" />
+                <ScalarProperty Name="Slide_3" ColumnName="Slide_3" />
+                <ScalarProperty Name="Slide_2" ColumnName="Slide_2" />
+                <ScalarProperty Name="Slide_1" ColumnName="Slide_1" />
+                <ScalarProperty Name="Logo_image" ColumnName="Logo_image" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
                 <ScalarProperty Name="Supplier_name" ColumnName="Supplier_name" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
@@ -654,6 +854,53 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Active_status" ColumnName="Active_status" />
                 <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category_Master">
+            <EntityTypeMapping TypeName="TheskymartModel.Category_Master">
+              <MappingFragment StoreEntitySet="Category_Master">
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Home_Page">
+            <EntityTypeMapping TypeName="TheskymartModel.V_Home_Page">
+              <MappingFragment StoreEntitySet="V_Home_Page">
+                <ScalarProperty Name="Item_image_5" ColumnName="Item_image_5" />
+                <ScalarProperty Name="Item_image_4" ColumnName="Item_image_4" />
+                <ScalarProperty Name="Item_image_3" ColumnName="Item_image_3" />
+                <ScalarProperty Name="Item_image_2" ColumnName="Item_image_2" />
+                <ScalarProperty Name="Item_image_1" ColumnName="Item_image_1" />
+                <ScalarProperty Name="Item_main_image" ColumnName="Item_main_image" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Slide_5" ColumnName="Slide_5" />
+                <ScalarProperty Name="Slide_4" ColumnName="Slide_4" />
+                <ScalarProperty Name="Slide_3" ColumnName="Slide_3" />
+                <ScalarProperty Name="Slide_2" ColumnName="Slide_2" />
+                <ScalarProperty Name="Slide_1" ColumnName="Slide_1" />
+                <ScalarProperty Name="Logo_image" ColumnName="Logo_image" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Active_status" ColumnName="Active_status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Payment_term" ColumnName="Payment_term" />
+                <ScalarProperty Name="Credit_limit" ColumnName="Credit_limit" />
+                <ScalarProperty Name="Email_id" ColumnName="Email_id" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Supplier_name" ColumnName="Supplier_name" />
+                <ScalarProperty Name="Supplier_ID" ColumnName="Supplier_ID" />
+                <ScalarProperty Name="Supplier_Price" ColumnName="Supplier_Price" />
+                <ScalarProperty Name="Sub_Group_Name" ColumnName="Sub_Group_Name" />
+                <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+                <ScalarProperty Name="Division_Name" ColumnName="Division_Name" />
+                <ScalarProperty Name="Item_Brand" ColumnName="Item_Brand" />
+                <ScalarProperty Name="Item_Name" ColumnName="Item_Name" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item_Code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -85,45 +85,45 @@ namespace TheSkyMartSite.Controllers
                 if (Image_1 != null)
                 {
 
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Item_main_image.FileName));
-                    Item_main_image.SaveAs(path);
-                    item_details_obj.Item_image_1 = id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Item_main_image.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Image_1.FileName));
+                    Image_1.SaveAs(path);
+                    item_details_obj.Item_image_1 = id.ToString() + "_Image_1" + System.IO.Path.GetExtension(Image_1.FileName);
 
 
                 }
                 if (Image_2 != null)
                 {
 
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Item_main_image.FileName));
-                    Item_main_image.SaveAs(path);
-                    item_details_obj.Item_image_2 = id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Item_main_image.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Image_2.FileName));
+                    Image_2.SaveAs(path);
+                    item_details_obj.Item_image_2 = id.ToString() + "_Image_2" + System.IO.Path.GetExtension(Image_2.FileName);
 
 
                 }
                 if (Image_3 != null)
                 {
 
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Item_main_image.FileName));
-                    Item_main_image.SaveAs(path);
-                    item_details_obj.Item_image_3 = id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Item_main_image.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Image_3.FileName));
+                    Image_3.SaveAs(path);
+                    item_details_obj.Item_image_3 = id.ToString() + "_Image_3" + System.IO.Path.GetExtension(Image_3.FileName);
 
 
                 }
                 if (Image_4 != null)
                 {
 
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Item_main_image.FileName));
-                    Item_main_image.SaveAs(path);
-                    item_details_obj.Item_image_4 = id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Item_main_image.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Image_4.FileName));
+                    Image_4.SaveAs(path);
+                    item_details_obj.Item_image_4 = id.ToString() + "_Image_4" + System.IO.Path.GetExtension(Image_4.FileName);
 
 
                 }
                 if (Image_5 != null)
                 {
 
-                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Item_main_image.FileName));
-                    Item_main_image.SaveAs(path);
-                    item_details_obj.Item_image_5 = id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Item_main_image.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Resources/Item_images"), id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Image_5.FileName));
+                    Image_5.SaveAs(path);
+                    item_details_obj.Item_image_5 = id.ToString() + "_Image_5" + System.IO.Path.GetExtension(Image_5.FileName);
 
 
                 }

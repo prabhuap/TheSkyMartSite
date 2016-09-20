@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TheSkyMartSite.Models.Supplier_Masters>
+@{ 
+    Layout = "~/Views/Shared/_LayoutPagewithoutheader.cshtml";
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logo_image)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           
+            @Html.ActionLink(item.Supplier_name, "Index", new { id = item.Supplier_ID})
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            <img src="~/Resources/Supplier_images/@Html.DisplayFor(modelItem => item.Logo_image)" />
+
+              
+        </td>
+    </tr>
+}
+  
+
+</table>
+<h2>
+    @Html.ActionLink("Back", "Category_Selection", "Home")
+</h2>

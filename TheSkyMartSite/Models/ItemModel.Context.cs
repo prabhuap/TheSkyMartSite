@@ -34,5 +34,7 @@ namespace TheSkyMartSite.Models
         public virtual DbSet<Price_master> Price_master { get; set; }
         public virtual DbSet<Sub_Group_master> Sub_Group_master { get; set; }
         public virtual DbSet<Supplier_Masters> Supplier_Masters { get; set; }
+        public virtual DbSet<Category_Master> Category_Master { get; set; }
+        public virtual DbSet<V_Home_Page> V_Home_Page { get; set; }
     }
 }

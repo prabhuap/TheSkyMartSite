@@ -170,12 +170,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Category_MasterController.cs" />
     <Compile Include="Controllers\Country_masterController.cs" />
     <Compile Include="Controllers\Division_masterController.cs" />
     <Compile Include="Controllers\Group_masterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Item_DetailsController.cs" />
-    <Compile Include="Controllers\Item_master1Controller.cs" />
     <Compile Include="Controllers\Item_masterController.cs" />
     <Compile Include="Controllers\Location_masterController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -186,6 +186,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category_Master.cs">
+      <DependentUpon>ItemModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Country_master.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
@@ -229,6 +232,9 @@
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier_Masters.cs">
+      <DependentUpon>ItemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_Home_Page.cs">
       <DependentUpon>ItemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -291,6 +297,10 @@
     <Content Include="Resources\Item_images\18712.242.png" />
     <Content Include="Resources\Item_images\19883.242.png" />
     <Content Include="Resources\Item_images\19894.242.png" />
+    <Content Include="Resources\Item_images\1_Image_1.jpg" />
+    <Content Include="Resources\Item_images\1_Image_2.jpg" />
+    <Content Include="Resources\Item_images\1_Image_4.jpg" />
+    <Content Include="Resources\Item_images\1_Main.jpg" />
     <Content Include="Resources\Item_images\20201.242.png" />
     <Content Include="Resources\Item_images\211.242.PNG" />
     <Content Include="Resources\Item_images\21647.242.png" />
@@ -427,6 +437,27 @@
     <Content Include="Resources\skymart_images\sideitem.jpg" />
     <Content Include="Resources\skymart_images\slide_pic.jpg" />
     <Content Include="Resources\skymart_images\telephon.png" />
+    <Content Include="Resources\Supplier_images\10_Logo.png" />
+    <Content Include="Resources\Supplier_images\2_Image_1.png" />
+    <Content Include="Resources\Supplier_images\2_Image_2.png" />
+    <Content Include="Resources\Supplier_images\2_Image_3.png" />
+    <Content Include="Resources\Supplier_images\2_Image_4.png" />
+    <Content Include="Resources\Supplier_images\2_Image_5.png" />
+    <Content Include="Resources\Supplier_images\2_Logo.png" />
+    <Content Include="Resources\Supplier_images\3_Image_1.png" />
+    <Content Include="Resources\Supplier_images\3_Image_2.png" />
+    <Content Include="Resources\Supplier_images\3_Image_3.png" />
+    <Content Include="Resources\Supplier_images\3_Image_4.png" />
+    <Content Include="Resources\Supplier_images\3_Image_5.png" />
+    <Content Include="Resources\Supplier_images\3_Logo.png" />
+    <Content Include="Resources\Supplier_images\8_Image_1.jpg" />
+    <Content Include="Resources\Supplier_images\8_Logo.jpg" />
+    <Content Include="Resources\Supplier_images\9_Image_1.jpg" />
+    <Content Include="Resources\Supplier_images\9_Logo.png" />
+    <Content Include="Resources\Supplier_images\Supplier 7_Image_1.jpg" />
+    <Content Include="Resources\Supplier_images\Supplier 8_Image_1.jpg" />
+    <Content Include="Resources\Supplier_images\Supplier 8_Main.jpg" />
+    <Content Include="Resources\Supplier_images\Supplier 9_Main.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ItemModel.edmx">
@@ -436,6 +467,7 @@
     <Content Include="Models\ItemModel.edmx.diagram">
       <DependentUpon>ItemModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Myasp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\imported\analytics.js" />
     <Content Include="Scripts\imported\atrk.js" />
@@ -547,11 +579,15 @@
     <Content Include="Views\Price_master\Details.cshtml" />
     <Content Include="Views\Price_master\Edit.cshtml" />
     <Content Include="Views\Price_master\Index.cshtml" />
-    <Content Include="Views\Item_master1\Create.cshtml" />
-    <Content Include="Views\Item_master1\Delete.cshtml" />
-    <Content Include="Views\Item_master1\Details.cshtml" />
-    <Content Include="Views\Item_master1\Edit.cshtml" />
-    <Content Include="Views\Item_master1\Index.cshtml" />
+    <Content Include="Views\Category_Master\Create.cshtml" />
+    <Content Include="Views\Category_Master\Delete.cshtml" />
+    <Content Include="Views\Category_Master\Details.cshtml" />
+    <Content Include="Views\Category_Master\Edit.cshtml" />
+    <Content Include="Views\Category_Master\Index.cshtml" />
+    <Content Include="Views\Home\Category_Selection.cshtml" />
+    <Content Include="Views\Home\Supplier_List.cshtml" />
+    <Content Include="Views\Shared\_LayoutPagewithoutheader.cshtml" />
+    <Content Include="Views\Home\NoResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,6 +24,9 @@
         <AssociationConnector Association="TheskymartModel.FK_Price_master_Item_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Supplier_Masters_Location_master" ManuallyRouted="false" />
         <AssociationConnector Association="TheskymartModel.FK_Price_master_Supplier_Masters" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TheskymartModel.Category_Master" Width="1.5" PointX="8.375" PointY="7.875" />
+        <AssociationConnector Association="TheskymartModel.FK_Supplier_Masters_Category_Master" />
+        <EntityTypeShape EntityType="TheskymartModel.V_Home_Page" Width="1.5" PointX="0.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

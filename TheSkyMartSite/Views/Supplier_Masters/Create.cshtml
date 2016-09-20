@@ -6,8 +6,7 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Supplier_Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -98,6 +97,51 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Category_ID, "Category_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Logo Image", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="logo_image" id="logo_image" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Slide Image1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_1" id="Image_1" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Slide Image2", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_2" id="Image_2" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Slide Image3", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_3" id="Image_3" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Left Image", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_4" id="Image_4" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Right Image", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="Image_5" id="Image_5" class="form-control" style="width: 100%; " />
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -108,7 +152,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

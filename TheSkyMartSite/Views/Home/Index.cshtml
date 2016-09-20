@@ -1,429 +1,676 @@
-﻿@{
-    Layout = null;
+﻿@model IEnumerable<TheSkyMartSite.Models.V_Home_Page>
 
-}
+    @{
 
-<!DOCTYPE html>
-<!-- saved from url=(0020)https -->
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        Layout = null;
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        THE SKY MART
-    </title>
-    <meta name="Keywords" content="online shopping, shopping sites in UAE, mobile phones, jewelry, watches">
-    <meta name="Description" content="Online Shopping | Lowest Prices in Dubai UAE with biggest discounts. Wish for your mobile, laptops,jewelries,watches,dress and others then we will deliver.">
-    <link rel="shortcut icon" href="">
-    <!-- rss -->
-    <!-- css -->
-    <link href="~/CSS/Web/default.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/omniyat.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/all.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/owl.carousel.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/owl.theme.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/owl.transitions.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/waslidemenu.css" rel="stylesheet" type="text/css">
-
-
-    <!-- js -->
-    <script type="text/javascript" async="" src="~/Scripts/imported/atrk.js"></script>
-    <script async="" src="~/Scripts/imported/fbevents.js"></script>
-    <script async="" src="~/Scripts/imported/analytics.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/jquery-1.11.1.min.js"></script>
-
-    <script type="text/javascript" src="~/Scripts/imported/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/default.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/owl.carousel.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/jquery.waslidemenu.min.js"></script>
-
-
-    <!-- shop app css -->
-    <link href="~/CSS/Web/default.shop.css" rel="stylesheet" type="text/css">
-    <link href="~/CSS/Web/jquery.bxslider.css" rel="stylesheet">
-    <link href="~/CSS/Web/menu.css" rel="stylesheet" type="text/css">
-
-    <!-- js -->
-    <script type="text/javascript" src="~/Scripts/imported/lazy.load.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/jquery.bxslider.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/jquery.cookie.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/default.shop.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/jquery.retina.min.js"></script>
-    <script type="text/javascript">
-$(window).load(function() {
-    $('.promo img').retina({ force_original_dimensions: false });
-    $('.product-list img,.product-info img,.cart img').retina();;
-    $('.bestsellers img').retina();
-});
-    </script>
-
-    <script type="text/javascript">
-        $(document).scroll(function()
+        if (!Model.Any())
         {
-            if ($(this).scrollTop() == 0) {
-                $(".floating_header").slideUp(400);
-            } else {
-                $(".floating_header").slideDown(400);
+            Response.Redirect("~/Home/NoResults");
+        }
+
+        var first_row = Model.First();
+    }
+
+    <!DOCTYPE html>
+    <!-- saved from url=(0020)https -->
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            THE SKY MART
+        </title>
+        <meta name="Keywords" content="online shopping, shopping sites in UAE, mobile phones, jewelry, watches">
+        <meta name="Description" content="Online Shopping | Lowest Prices in Dubai UAE with biggest discounts. Wish for your mobile, laptops,jewelries,watches,dress and others then we will deliver.">
+        <link rel="shortcut icon" href="">
+        <!-- rss -->
+        <!-- css -->
+        <link href="~/CSS/Web/default.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/omniyat.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/all.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/owl.carousel.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/owl.theme.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/owl.transitions.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/waslidemenu.css" rel="stylesheet" type="text/css">
+
+
+        <!-- js -->
+        <script type="text/javascript" async="" src="~/Scripts/imported/atrk.js"></script>
+        <script async="" src="~/Scripts/imported/fbevents.js"></script>
+        <script async="" src="~/Scripts/imported/analytics.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/jquery-1.11.1.min.js"></script>
+
+        <script type="text/javascript" src="~/Scripts/imported/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/default.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/owl.carousel.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/jquery.waslidemenu.min.js"></script>
+
+
+        <!-- shop app css -->
+        <link href="~/CSS/Web/default.shop.css" rel="stylesheet" type="text/css">
+        <link href="~/CSS/Web/jquery.bxslider.css" rel="stylesheet">
+        <link href="~/CSS/Web/menu.css" rel="stylesheet" type="text/css">
+
+        <!-- js -->
+        <script type="text/javascript" src="~/Scripts/imported/lazy.load.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/jquery.bxslider.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/jquery.cookie.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/default.shop.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/jquery.retina.min.js"></script>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('.promo img').retina({ force_original_dimensions: false });
+                $('.product-list img,.product-info img,.cart img').retina();;
+                $('.bestsellers img').retina();
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).scroll(function () {
+                if ($(this).scrollTop() == 0) {
+                    $(".floating_header").slideUp(400);
+                } else {
+                    $(".floating_header").slideDown(400);
+                }
+            })
+        </script>
+
+        <!-- plugin hook: 'frontend_head' -->
+        <link rel="stylesheet" href="~/Resources/Item_images/itemsetsFrontend.css">
+        <style type="text/css">
+            i.itemsets-pl.loader {
+                background: url(/wa-apps/shop/plugins/itemsets/img/loader.gif) no-repeat;
+                width: 43px;
+                height: 11px;
+                display: inline-block;
             }
-        })
-    </script>
+        </style>
+        <script type="text/javascript" src="~/Scripts/imported/itemsetsFrontend.js"></script>
+        <script type="text/javascript" src="~/Scripts/imported/itemsetsFrontendLocale.js"></script>
+        <script type="text/javascript">
+            (function ($) {
+                $(function () {
+                    $.itemsetsFrontend.init();
+                });
+            })(jQuery);
+        </script>
+        <!-- Start of StatCounter Code for Default Guide -->
+        <script type="text/javascript">
+            var sc_project = 10489012;
+            var sc_invisible = 1;
+            var sc_security = "28a7d85c";
+            var scJsHost = (("https:" == document.location.protocol) ?
+            "https://secure." : "http://www.");
+            document.write("<sc" + "ript type='text/javascript' src='" +
+            scJsHost +
+            "statcounter.com/counter/counter.js'></" + "script>");
+        </script>
+        <script type="text/javascript" src="~/Scripts/imported/counter.js"></script>
+        <noscript>
+            &lt;div class="statcounter"&gt;&lt;a title="click tracking"
+            href="http://statcounter.com/" target="_blank"&gt;&lt;img
+            class="statcounter"
+            src="http://c.statcounter.com/10489012/0/28a7d85c/1/"
+            alt="click tracking"&gt;&lt;/a&gt;&lt;/div&gt;
+        </noscript>
+        <!-- End of StatCounter Code for Default Guide -->
+        <meta name="google-site-verification" content="VI1QZwF2SrIGs4YxtXyJmriOo8QmWRSzQnjyiuRL-qU">
+        <!--[if lt IE 9]>
+        <script>
+            document.createElement('header');
+            document.createElement('nav');
+            document.createElement('section');
+            document.createElement('article');
+            document.createElement('aside');
+            document.createElement('footer');
+            document.createElement('figure');
+            document.createElement('hgroup');
+            document.createElement('menu');
+        </script>
+        <![endif]-->
 
-    <!-- plugin hook: 'frontend_head' -->
-    <link rel="stylesheet" href="~/Resources/Item_images/itemsetsFrontend.css">
-    <style type="text/css">
-        i.itemsets-pl.loader {
-            background: url(/wa-apps/shop/plugins/itemsets/img/loader.gif) no-repeat;
-            width: 43px;
-            height: 11px;
-            display: inline-block;
-        }
-    </style>
-    <script type="text/javascript" src="~/Scripts/imported/itemsetsFrontend.js"></script>
-    <script type="text/javascript" src="~/Scripts/imported/itemsetsFrontendLocale.js"></script>
-    <script type="text/javascript">
-                    (function($) {
-                        $(function() {
-                            $.itemsetsFrontend.init();
-                        });
-                    })(jQuery);
-    </script>
-    <!-- Start of StatCounter Code for Default Guide -->
-    <script type="text/javascript">
-var sc_project=10489012;
-var sc_invisible=1;
-var sc_security="28a7d85c";
-var scJsHost = (("https:" == document.location.protocol) ?
-"https://secure." : "http://www.");
-document.write("<sc"+"ript type='text/javascript' src='" +
-scJsHost+
-"statcounter.com/counter/counter.js'></"+"script>");
-    </script>
-    <script type="text/javascript" src="~/Scripts/imported/counter.js"></script>
-    <noscript>
-        &lt;div class="statcounter"&gt;&lt;a title="click tracking"
-        href="http://statcounter.com/" target="_blank"&gt;&lt;img
-        class="statcounter"
-        src="http://c.statcounter.com/10489012/0/28a7d85c/1/"
-        alt="click tracking"&gt;&lt;/a&gt;&lt;/div&gt;
-    </noscript>
-    <!-- End of StatCounter Code for Default Guide -->
-    <meta name="google-site-verification" content="VI1QZwF2SrIGs4YxtXyJmriOo8QmWRSzQnjyiuRL-qU">
-    <!--[if lt IE 9]>
-    <script>
-        document.createElement('header');
-        document.createElement('nav');
-        document.createElement('section');
-        document.createElement('article');
-        document.createElement('aside');
-        document.createElement('footer');
-        document.createElement('figure');
-        document.createElement('hgroup');
-        document.createElement('menu');
-    </script>
-    <![endif]-->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })
+            (window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-50825405-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <script>
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function () {
+                    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }
+            (window, document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '954602437938861');
+            fbq('track', 'PageView');
+        </script>
+        <noscript>
+            &lt;img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=954602437938861&amp;ev=PageView&amp;noscript=1"/&gt;
+        </noscript>
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })
-        (window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-50825405-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq)return;
-            n = f.fbq = function () {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq)f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }
-        (window, document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '954602437938861');
-        fbq('track', 'PageView');
-    </script>
-    <noscript>
-        &lt;img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=954602437938861&amp;ev=PageView&amp;noscript=1"/&gt;
-    </noscript>
-
-    <style>
-    </style>
+        <style>
+        </style>
 
 
-    <!-- Start Alexa Certify Javascript -->
-    <script type="text/javascript">
-                _atrk_opts = {atrk_acct: "Rp1Sl1aQibl0mh", domain: "omniyat.net", dynamic: true};
-                (function () {
-                    var as = document.createElement('script');
-                    as.type = 'text/javascript';
-                    int
-                    as.async = true;
-                    as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js";
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(as, s);    })();
-    </script>
-    <noscript>
-        &lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=Rp1Sl1aQibl0mh" style="display:none" height="1" width="1" alt=""/&gt;
-    </noscript>
-    <!-- End Alexa Certify Javascript -->
+        <!-- Start Alexa Certify Javascript -->
+        <script type="text/javascript">
+            _atrk_opts = { atrk_acct: "Rp1Sl1aQibl0mh", domain: "omniyat.net", dynamic: true };
+            (function () {
+                var as = document.createElement('script');
+                as.type = 'text/javascript';
+                int
+                as.async = true;
+                as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js";
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(as, s);
+            })();
+        </script>
+        <noscript>
+            &lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=Rp1Sl1aQibl0mh" style="display:none" height="1" width="1" alt=""/&gt;
+        </noscript>
+        <!-- End Alexa Certify Javascript -->
 
-    <style type="text/css"></style>
-</head>
-<body>
+        <style type="text/css"></style>
+    </head>
+    <body>
 
 
 
-    <div class="heder">
-        <div class="container">
-            <div class="logo">
-                <a href="#">
-                    <img src="~/Resources/Default_images/skymartlogo.j" alt="Omniyat.net">
-                </a>
-            </div><div class="cart_block"><div class="nav-cart nav-cart-box fixed" id="cart" style="display: block; width: auto;"><a rel="nofollow" href="#"><span class="text hidden-sm">Cart</span> </a> <span id="nav-cart-num" class="cart-number cart-total">1</span></div><div class="nav-wishlist"><a rel="nofollow" href="#"> <span class="text hidden-sm">Wish List</span> </a><div id="navWishlistCtn" class="nav-wishlist-ctn"><div class="nav-wishlist-msg"><ul id="navWishListMsg"></ul></div></div></div><div class="nav-user-account" id="nav-user-account" data-widget-cid="widget-9"><div class="user-account-info"><div class="user-account-inner hidden-sm"><span class="account-unsigned"><a rel="nofollow" href="">Sign in</a></span><span class="account-name"></span><div class="myaliexpress"><span>My Account</span></div></div></div><div class="user-account-main"><div class="flyout-user-signIn"><div class="logform"> </div><p><a rel="nofollow" href="" class="join-btn">Sign up</a></p></div></div></div></div><div class="search"><form role="search" action="" id="form-searchbar" class="searchbar-form"><div class="searchbar-operate-box"><input type="submit" class="search-button" value=""></div><div class="search-key-box"><input type="text" placeholder="Search here..." maxlength="50" autocomplete="off" value="" name="query" class="search-key" id="search-key"></div></form></div>
+        <div class="heder">
+            <div class="container">
+                <div class="logo">
+                    <a href="#">
+                        <img src="~/Resources/Supplier_images/@first_row.Logo_image" alt="Omniyat.net">
+                    </a>
+                </div><div class="cart_block"><div class="nav-cart nav-cart-box fixed" id="cart" style="display: block; width: auto;"><a rel="nofollow" href="#"><span class="text hidden-sm">Cart</span> </a> <span id="nav-cart-num" class="cart-number cart-total">1</span></div><div class="nav-wishlist"><a rel="nofollow" href="#"> <span class="text hidden-sm">Wish List</span> </a><div id="navWishlistCtn" class="nav-wishlist-ctn"><div class="nav-wishlist-msg"><ul id="navWishListMsg"></ul></div></div></div><div class="nav-user-account" id="nav-user-account" data-widget-cid="widget-9"><div class="user-account-info"><div class="user-account-inner hidden-sm"><span class="account-unsigned"><a rel="nofollow" href="">Sign in</a></span><span class="account-name"></span><div class="myaliexpress"><span>My Account</span></div></div></div><div class="user-account-main"><div class="flyout-user-signIn"><div class="logform"> </div><p><a rel="nofollow" href="" class="join-btn">Sign up</a></p></div></div></div></div><div class="search"><form role="search" action="" id="form-searchbar" class="searchbar-form"><div class="searchbar-operate-box"><input type="submit" class="search-button" value=""></div><div class="search-key-box"><input type="text" placeholder="Search here..." maxlength="50" autocomplete="off" value="" name="query" class="search-key" id="search-key"></div></form></div>
+            </div>
+
+        </div>
+        <div>
+            testttt
         </div>
 
-    </div>
-    <div>
-        testttt
-    </div>
-
-    <div class="main container mag">
-        <!-- plugin hook: 'frontend_header' -->
-        <!-- plugin hook: 'frontend_header' -->
+        <div class="main container mag">
+            <!-- plugin hook: 'frontend_header' -->
+            <!-- plugin hook: 'frontend_header' -->
 
 
 
-        <div class="page-content mag" id="page-content" itemscope="" itemtype="http://schema.org/Store">
-            <meta itemprop="name" content="">
-            <meta itemprop="address" content="">
-            <meta itemprop="telephone" content="">
-            <meta itemprop="currenciesAccepted" content="AED">
+            <div class="page-content mag" id="page-content" itemscope="" itemtype="http://schema.org/Store">
+                <meta itemprop="name" content="">
+                <meta itemprop="address" content="">
+                <meta itemprop="telephone" content="">
+                <meta itemprop="currenciesAccepted" content="AED">
 
-            <div class="menu">
-                <div class="container">
-                    testing
-                    <br />
-                    <br />
+                <div class="menu">
+                    <div class="container">
+                        testing
+                        <br />
+                        <br />
 
-                    <br />
+                        <br />
 
-                    <br />
-                    <br />
-                    <div>
-                        <ul class="mega-nav">
-                            <li>
-                                <a href="#">Category1</a>
-                                <div>
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Seventh Generation</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                            <li><a href="#">Derbies</a></li>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
+                        <br />
+                        <br />
+                        <div>
+                            <ul class="mega-nav">
+                                @{ 
+                                    var div_list =  Model.Select(item => item.Division_Name).Distinct().ToList();
+                                }
+                                @foreach (var div in div_list)
+                                {
+                                    <li>
+                                        <a href="#">@Html.Label(div)</a>
+                                        <div>
+                                            <div class="mega-nav-column">
+                                           @foreach (var grp in Model)
+                                           {
+                                               if (grp.Division_Name.Equals(div))
+                                               {
+                                                <h3>
+                                                    @Html.DisplayFor(gromod => grp.Group_Name)
+                                                </h3>
+                                                <ul>
+                                                    @foreach (var subgrp in Model)
+                                                    {
+                                                        if (subgrp.Group_Name.Equals(grp.Group_Name))
+                                                        {
+                                                            <li><a href="#">@Html.DisplayFor(submod => subgrp.Sub_Group_Name)</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                               }
+                                           }
 
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
+                                             </div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
 
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Seventh Generation</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                            <li><a href="#">Derbies</a></li>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mega-nav-column">
-                                        <h3 class="orange">Related Categories</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                        </ul>
-
-                                        <h3 class="orange">Brands</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#">Category2</a></li>
-                            <li>
-                                <a href="#">Category3</a>
-                                <div>
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Seventh Generation</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                            <li><a href="#">Derbies</a></li>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mega-nav-column">
-                                        <h3>Home</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Seventh Generation</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                            <li><a href="#">Derbies</a></li>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                            <li><a href="#">Loafers</a></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="mega-nav-column">
-                                        <h3 class="orange">Related Categories</h3>
-                                        <ul>
-                                            <li><a href="#">Pampers Diapers</a></li>
-                                            <li><a href="#">Huggies Diapers</a></li>
-                                            <li><a href="#">Diapers</a></li>
-                                        </ul>
-
-                                        <h3 class="orange">Brands</h3>
-                                        <ul>
-                                            <li><a href="#">Driving shoes</a></li>
-                                            <li><a href="#">Espadrilles</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#">Category4</a></li>
-                            <li><a href="#">Category5</a></li>
-                            <li><a href="#">Category6</a></li>
-                            <li><a href="#">Category7</a></li>
-                            <li><a href="#">Category8</a></li>
-                            <li><a href="#">Category9</a></li>
-                            <li><a href="#">Category10</a></li>
-                            <li><a href="#">Category11</a></li>
-
-                        </ul>
                     </div>
-
                 </div>
-            </div>
-            <div class="home-firstscreen">
-                <div class="home-firstscreen-main">
+                <div class="home-firstscreen">
+                    <div class="home-firstscreen-main">
 
 
-                    <div class="categories">
+                        <div class="categories">
 
-                        <a href=""><img src="~/Resources/skymart_images/sideitem.jpg" alt="1 for web.JPG"></a>
+                            <a href=""><img src="~/Resources/Supplier_images/@first_row.Slide_4" alt="1 for web.JPG"></a>
+
+                        </div>
+
+                        <div class="advertise-main">
+
+                            <div class="ui-banner-slider col-md-40 col-lg-40 key-visual-main" id="key-visual-main">
+                                <ul class="ui-banner-slider-slider owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                    <div class="owl-wrapper-outer">
+                                        <div class="owl-wrapper" style="width: 7680px; left: 0px; display: block; transition: all 800ms ease; transform: translate3d(-1280px, 0px, 0px);">
+                                          
+                                             <div class="owl-item" style="width: 640px;">
+                                                <li>
+                                                    <a href=""> <img src="~/Resources/Supplier_images/@first_row.Slide_1" alt="n banner web copy.jpg"></a>
+                                                </li>
+                                            </div>
+                                            <div class="owl-item" style="width: 640px;">
+                                                <li>
+                                                    <a href=""> <img src="~/Resources/Supplier_images/@first_row.Slide_2" alt="electronics.png"></a>
+                                                </li>
+                                            </div>
+                                            <div class="owl-item" style="width: 640px;">
+                                                <li>
+                                                    <a href=""> <img src="~/Resources/Supplier_images/@first_row.Slide_3" alt="electronics.png"></a>
+                                                </li>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="owl-controls clickable">
+                                        <div class="owl-pagination">
+                                            <div class="owl-page">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                            <div class="owl-page">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                            <div class="owl-page active">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                            <div class="owl-page">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                            <div class="owl-page">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                            <div class="owl-page">
+                                                <span class="">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="owl-buttons">
+                                            <div class="owl-prev">
+                                                <a class="ui-banner-slider-prev">Previous</a>
+                                            </div>
+                                            <div class="owl-next">
+                                                <a class="ui-banner-slider-next">Next</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="sub-visual hidden-sm col-md-20 col-lg-20" data-spm="16">
+                                <div class="sub-visual-inner">
+                                    <ul class="sub-visual-list">
+
+                                        <li>
+                                            <a href=""><img src="~/Resources/Supplier_images/@first_row.Slide_5" alt="1 for web.JPG"></a>
+                                        </li>
+                                        <li>
+                                            <a href=""><img src="~/Resources/Supplier_images/@first_row.Slide_5" alt="2for web.jpg"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
+                    @*
+                    <div class="today-deal today-deal-dos container">
+                        <div class="container-inner">
+                            <div class="title">
+                                <h2><a href=""><i>TODAY'S</i> DEALS</a></h2>
+                                <span class="count-down" id="j-count-down"><i>Deals End in</i></span><a href="" class="view-more">View more</a>
+                            </div>
 
-                    <div class="advertise-main">
+                            <div class="container-main clearfix" data-role="main">
+                                <div class="row-box col-lg-15 col-md-20 col-sm-30">
+                                    <ul class="product-list-show">
+                                        <li>
+                                            <a href="" title="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card">
+                                                <div class="pro-img"><img itemprop="image" alt="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card" src="~/Resources/skymart_images/item1.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>18% off</span></div>
+                                                    <span class="g-price">69 AED</span>
+                                                    <del class="g-del-price">84 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
 
-                        <div class="ui-banner-slider col-md-40 col-lg-40 key-visual-main" id="key-visual-main">
-                            <ul class="ui-banner-slider-slider owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                        <li>
+                                            <a href="" title="Bundle Offer Android Smartphone iZoom 1201, Gmango G9">
+                                                <div class="pro-img"><img itemprop="image" alt="Bundle Offer Android Smartphone iZoom 1201, Gmango G9" src="~/Resources/skymart_images/item2.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>25% off</span></div>
+                                                    <span class="g-price">249 AED</span>
+                                                    <del class="g-del-price">328 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2">
+                                                <div class="pro-img"><img itemprop="image" alt="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2" src="~/Resources/skymart_images/item3.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>23% off</span></div>
+                                                    <span class="g-price">199 AED</span>
+                                                    <del class="g-del-price">258 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="row-box col-lg-15 col-md-20 col-sm-30">
+                                    <ul class="product-list-show">
+                                        <li>
+                                            <a href="" title="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card">
+                                                <div class="pro-img"><img itemprop="image" alt="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card" src="~/Resources/skymart_images/item4.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>18% off</span></div>
+                                                    <span class="g-price">69 AED</span>
+                                                    <del class="g-del-price">84 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Bundle Offer Android Smartphone iZoom 1201, Gmango G9">
+                                                <div class="pro-img"><img itemprop="image" alt="Bundle Offer Android Smartphone iZoom 1201, Gmango G9" src="~/Resources/skymart_images/item5.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>25% off</span></div>
+                                                    <span class="g-price">249 AED</span>
+                                                    <del class="g-del-price">328 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2">
+                                                <div class="pro-img"><img itemprop="image" alt="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2" src="~/Resources/skymart_images/item6.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>23% off</span></div>
+                                                    <span class="g-price">199 AED</span>
+                                                    <del class="g-del-price">258 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="row-box col-lg-15 col-md-20 col-sm-30">
+                                    <ul class="product-list-show">
+                                        <li>
+                                            <a href="" title="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026">
+                                                <div class="pro-img"><img itemprop="image" alt="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026" src="~/Resources/skymart_images/item7.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>40% off</span></div>
+                                                    <span class="g-price">59 AED</span>
+                                                    <del class="g-del-price">98 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer">
+                                                <div class="pro-img"><img itemprop="image" alt="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer" src="~/Resources/skymart_images/item8.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>41% off</span></div>
+                                                    <span class="g-price">99 AED</span>
+                                                    <del class="g-del-price">167 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Cerina Stainless Steel Watch For Couple, CR 1071">
+                                                <div class="pro-img"><img itemprop="image" alt="Cerina Stainless Steel Watch For Couple, CR 1071" src="~/Resources/skymart_images/item9.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>25% off</span></div>
+                                                    <span class="g-price">59 AED</span>
+                                                    <del class="g-del-price">78 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="row-box col-lg-15 col-md-20 col-sm-30">
+                                    <ul class="product-list-show">
+                                        <li>
+                                            <a href="" title="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026">
+                                                <div class="pro-img"><img itemprop="image" alt="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026" src="~/Resources/skymart_images/item10.jpg"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>40% off</span></div>
+                                                    <span class="g-price">59 AED</span>
+                                                    <del class="g-del-price">98 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer">
+                                                <div class="pro-img"><img itemprop="image" alt="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer" src="~/Resources/Item_images/26067.360x360.png"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>41% off</span></div>
+                                                    <span class="g-price">99 AED</span>
+                                                    <del class="g-del-price">167 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="" title="Cerina Stainless Steel Watch For Couple, CR 1071">
+                                                <div class="pro-img"><img itemprop="image" alt="Cerina Stainless Steel Watch For Couple, CR 1071" src="~/Resources/Item_images/27400.360x360.PNG"></div>
+                                                <div class="pro-info">
+                                                    <div class="discount"><span>25% off</span></div>
+                                                    <span class="g-price">59 AED</span>
+                                                    <del class="g-del-price">78 AED</del>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container industry-floor industry-floor-women">
+                        <div class="container-inner clearfix" style="border-top-color: rgb(0, 89, 167);">
+                            <div class="indutry-info col-lg-10 col-md-12 col-sm-20">
+                                <div class="industry-enter z80">
+                                    <a href="" style="color:#0059a7 !important">Category 1</a>
+                                </div>
+                                <div class="keyword-list">
+                                    <a href="">Model1</a>
+                                    <a href="">Model2</a>
+                                    <a href="">Model3</a>
+                                    <a href="">Model4</a>
+                                    <a href="">Model5</a>
+                                    <a href="">Model6</a>
+                                    <a href="">Model7</a>
+                                    <a href="">Model8</a>
+                                    <a href="">Model9</a>
+                                    <a href="">Model10</a>
+
+                                </div>
+                            </div>
+
+                            <div class="rec-industry-list col-lg-30 col-md-24 col-sm-40">
+
+                                <!-- products mini thumbnail list view: related products, etc. -->
+                                <ul class="thumbs product-list lis">
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 1">
+                                                <h5>
+                                                    <span itemprop="name">Item 1</span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 1" src="~/Resources/skymart_images/item4.jpg">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">59 AED</span>
+                                        </div>
+                                    </li>
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 2">
+                                                <h5>
+                                                    <span itemprop="name">Item 2</span>
+                                                    <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i></span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 2" src="~/Resources/skymart_images/item6.jpg">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">199 AED</span>
+                                        </div>
+                                    </li>
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 3">
+                                                <h5>
+                                                    <span itemprop="name">Item 3</span>
+                                                    <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star-empty"></i></span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 3" src="~/Resources/skymart_images/item10.jpg">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">29 AED</span>
+                                        </div>
+                                    </li>
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 4">
+                                                <h5>
+                                                    <span itemprop="name">Item 4</span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 4" src="~/Resources/skymart_images/item8.jpg">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">199 AED</span>
+                                        </div>
+                                    </li>
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 5">
+                                                <h5>
+                                                    <span itemprop="name">Item 5 </span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 5 " src="~/Resources/Item_images/23783.242.png">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">49 AED</span>
+                                        </div>
+                                    </li>
+                                    <li itemscope="" itemtype="https://schema.org/Product">
+                                        <div class="image">
+                                            <a href="" title="Item 6">
+                                                <h5>
+                                                    <span itemprop="name">Item 6</span>
+                                                    <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star-half"></i></span>
+                                                </h5>
+                                                <img itemprop="image" alt="Item 6" src="~/Resources/Item_images/6366.242.PNG">
+                                            </a>
+                                        </div>
+                                        <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+                                            <span class="price nowrap">99 AED</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="recommend-box col-lg-20 col-md-24 hidden-sm owl-carousel owl-theme" style="opacity: 1; display: block;">
                                 <div class="owl-wrapper-outer">
-                                    <div class="owl-wrapper" style="width: 7680px; left: 0px; display: block; transition: all 800ms ease; transform: translate3d(-1280px, 0px, 0px);">
-                                        <div class="owl-item" style="width: 640px;">
-                                            <li>
-                                                <a href=""> <img src="~/Resources/skymart_images/slide_pic.jpg" alt="n banner web copy.jpg"></a>
-                                            </li>
+                                    <div class="owl-wrapper" style="width: 3200px; left: 0px; display: block; transition: all 800ms ease; transform: translate3d(-800px, 0px, 0px);">
+                                        <div class="owl-item" style="width: 400px;">
+                                            <div>
+                                                <a href=""> <img src="~/Resources/Item_images/612.750.jpg" alt="7.jpg"></a>
+                                            </div>
                                         </div>
-                                        <div class="owl-item" style="width: 640px;">
-                                            <li>
-                                                <a href=""> <img src="~/Resources/skymart_images/slide_pic.jpg" alt="electronics.png"></a>
-                                            </li>
+                                        <div class="owl-item" style="width: 400px;">
+                                            <div>
+                                                <a href=""> <img src="~/Resources/Item_images/610.750.jpg" alt="2.jpg"></a>
+                                            </div>
                                         </div>
-
-
+                                        <div class="owl-item" style="width: 400px;">
+                                            <div>
+                                                <a href=""> <img src="~/Resources/Item_images/613.750.jpg" alt="-21.jpg"></a>
+                                            </div>
+                                        </div>
+                                        <div class="owl-item" style="width: 400px;">
+                                            <div>
+                                                <a href=""> <img src="~/Resources/Item_images/611.750.jpg" alt="3.jpg"></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="owl-controls clickable">
                                     <div class="owl-pagination">
                                         <div class="owl-page">
-                                            <span class="">
-                                            </span>
+                                            <span class=""></span>
                                         </div>
                                         <div class="owl-page">
                                             <span class="">
                                             </span>
                                         </div>
                                         <div class="owl-page active">
-                                            <span class="">
-                                            </span>
+                                            <span class=""></span>
                                         </div>
                                         <div class="owl-page">
-                                            <span class="">
-                                            </span>
-                                        </div>
-                                        <div class="owl-page">
-                                            <span class="">
-                                            </span>
-                                        </div>
-                                        <div class="owl-page">
-                                            <span class="">
-                                            </span>
+                                            <span class=""></span>
                                         </div>
                                     </div>
                                     <div class="owl-buttons">
@@ -435,432 +682,103 @@ scJsHost+
                                         </div>
                                     </div>
                                 </div>
-                            </ul>
-                        </div>
-                        <div class="sub-visual hidden-sm col-md-20 col-lg-20" data-spm="16">
-                            <div class="sub-visual-inner">
-                                <ul class="sub-visual-list">
-
-                                    <li>
-                                        <a href=""><img src="~/Resources/skymart_images/right_side1.jpg" alt="1 for web.JPG"></a>
-                                    </li>
-                                    <li>
-                                        <a href=""><img src="~/Resources/skymart_images/right_side2.jpg" alt="2for web.jpg"></a>
-                                    </li>
-                                </ul>
                             </div>
+
                         </div>
                     </div>
+                    *@
 
-                </div><div class="today-deal today-deal-dos container">
-                    <div class="container-inner">
-                        <div class="title">
-                            <h2><a href=""><i>TODAY'S</i> DEALS</a></h2>
-                            <span class="count-down" id="j-count-down"><i>Deals End in</i></span><a href="" class="view-more">View more</a>
-                        </div>
-
-                        <div class="container-main clearfix" data-role="main">
-                            <div class="row-box col-lg-15 col-md-20 col-sm-30">
-                                <ul class="product-list-show">
-                                    <li>
-                                        <a href="" title="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card">
-                                            <div class="pro-img"><img itemprop="image" alt="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card" src="~/Resources/skymart_images/item1.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>18% off</span></div>
-                                                <span class="g-price">69 AED</span>
-                                                <del class="g-del-price">84 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Bundle Offer Android Smartphone iZoom 1201, Gmango G9">
-                                            <div class="pro-img"><img itemprop="image" alt="Bundle Offer Android Smartphone iZoom 1201, Gmango G9" src="~/Resources/skymart_images/item2.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>25% off</span></div>
-                                                <span class="g-price">249 AED</span>
-                                                <del class="g-del-price">328 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2">
-                                            <div class="pro-img"><img itemprop="image" alt="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2" src="~/Resources/skymart_images/item3.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>23% off</span></div>
-                                                <span class="g-price">199 AED</span>
-                                                <del class="g-del-price">258 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="row-box col-lg-15 col-md-20 col-sm-30">
-                                <ul class="product-list-show">
-                                    <li>
-                                        <a href="" title="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card">
-                                            <div class="pro-img"><img itemprop="image" alt="Stereo Headphone Bluetooth ST-411, 8Gb Memory Card" src="~/Resources/skymart_images/item4.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>18% off</span></div>
-                                                <span class="g-price">69 AED</span>
-                                                <del class="g-del-price">84 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Bundle Offer Android Smartphone iZoom 1201, Gmango G9">
-                                            <div class="pro-img"><img itemprop="image" alt="Bundle Offer Android Smartphone iZoom 1201, Gmango G9" src="~/Resources/skymart_images/item5.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>25% off</span></div>
-                                                <span class="g-price">249 AED</span>
-                                                <del class="g-del-price">328 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2">
-                                            <div class="pro-img"><img itemprop="image" alt="Nikai Electric Meat Grinder NMG744T,Grill Toaster NGT535N2" src="~/Resources/skymart_images/item6.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>23% off</span></div>
-                                                <span class="g-price">199 AED</span>
-                                                <del class="g-del-price">258 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="row-box col-lg-15 col-md-20 col-sm-30">
-                                <ul class="product-list-show">
-                                    <li>
-                                        <a href="" title="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026">
-                                            <div class="pro-img"><img itemprop="image" alt="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026" src="~/Resources/skymart_images/item7.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>40% off</span></div>
-                                                <span class="g-price">59 AED</span>
-                                                <del class="g-del-price">98 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer">
-                                            <div class="pro-img"><img itemprop="image" alt="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer" src="~/Resources/skymart_images/item8.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>41% off</span></div>
-                                                <span class="g-price">99 AED</span>
-                                                <del class="g-del-price">167 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Cerina Stainless Steel Watch For Couple, CR 1071">
-                                            <div class="pro-img"><img itemprop="image" alt="Cerina Stainless Steel Watch For Couple, CR 1071" src="~/Resources/skymart_images/item9.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>25% off</span></div>
-                                                <span class="g-price">59 AED</span>
-                                                <del class="g-del-price">78 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-
-                            <div class="row-box col-lg-15 col-md-20 col-sm-30">
-                                <ul class="product-list-show">
-                                    <li>
-                                        <a href="" title="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026">
-                                            <div class="pro-img"><img itemprop="image" alt="Sana Jewelry 18K Gold Plated Elegant Bracelet for Men SJB063,Ring RJR026" src="~/Resources/skymart_images/item10.jpg"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>40% off</span></div>
-                                                <span class="g-price">59 AED</span>
-                                                <del class="g-del-price">98 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer">
-                                            <div class="pro-img"><img itemprop="image" alt="Bundle Offer Slicer Plus, Electric Kettle, Hand Mixer" src="~/Resources/Item_images/26067.360x360.png"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>41% off</span></div>
-                                                <span class="g-price">99 AED</span>
-                                                <del class="g-del-price">167 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="" title="Cerina Stainless Steel Watch For Couple, CR 1071">
-                                            <div class="pro-img"><img itemprop="image" alt="Cerina Stainless Steel Watch For Couple, CR 1071" src="~/Resources/Item_images/27400.360x360.PNG"></div>
-                                            <div class="pro-info">
-                                                <div class="discount"><span>25% off</span></div>
-                                                <span class="g-price">59 AED</span>
-                                                <del class="g-del-price">78 AED</del>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="container industry-floor industry-floor-women">
-                    <div class="container-inner clearfix" style="border-top-color: rgb(0, 89, 167);">
-                        <div class="indutry-info col-lg-10 col-md-12 col-sm-20">
-                            <div class="industry-enter z80">
-                                <a href="" style="color:#0059a7 !important">Category 1</a>
-                            </div>
-                            <div class="keyword-list">
-                                <a href="">Model1</a>
-                                <a href="">Model2</a>
-                                <a href="">Model3</a>
-                                <a href="">Model4</a>
-                                <a href="">Model5</a>
-                                <a href="">Model6</a>
-                                <a href="">Model7</a>
-                                <a href="">Model8</a>
-                                <a href="">Model9</a>
-                                <a href="">Model10</a>
-
-                            </div>
-                        </div>
-
-                        <div class="rec-industry-list col-lg-30 col-md-24 col-sm-40">
-
-                            <!-- products mini thumbnail list view: related products, etc. -->
-                            <ul class="thumbs product-list lis">
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 1">
-                                            <h5>
-                                                <span itemprop="name">Item 1</span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 1" src="~/Resources/skymart_images/item4.jpg">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">59 AED</span>
-                                    </div>
-                                </li>
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 2">
-                                            <h5>
-                                                <span itemprop="name">Item 2</span>
-                                                <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i></span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 2" src="~/Resources/skymart_images/item6.jpg">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">199 AED</span>
-                                    </div>
-                                </li>
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 3">
-                                            <h5>
-                                                <span itemprop="name">Item 3</span>
-                                                <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star-empty"></i></span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 3" src="~/Resources/skymart_images/item10.jpg">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">29 AED</span>
-                                    </div>
-                                </li>
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 4">
-                                            <h5>
-                                                <span itemprop="name">Item 4</span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 4" src="~/Resources/skymart_images/item8.jpg">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">199 AED</span>
-                                    </div>
-                                </li>
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 5">
-                                            <h5>
-                                                <span itemprop="name">Item 5 </span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 5 " src="~/Resources/Item_images/23783.242.png">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">49 AED</span>
-                                    </div>
-                                </li>
-                                <li itemscope="" itemtype="https://schema.org/Product">
-                                    <div class="image">
-                                        <a href="" title="Item 6">
-                                            <h5>
-                                                <span itemprop="name">Item 6</span>
-                                                <span class="rating nowrap"><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star"></i><i class="icon10 star-half"></i></span>
-                                            </h5>
-                                            <img itemprop="image" alt="Item 6" src="~/Resources/Item_images/6366.242.PNG">
-                                        </a>
-                                    </div>
-                                    <div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
-                                        <span class="price nowrap">99 AED</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="recommend-box col-lg-20 col-md-24 hidden-sm owl-carousel owl-theme" style="opacity: 1; display: block;">
-                            <div class="owl-wrapper-outer">
-                                <div class="owl-wrapper" style="width: 3200px; left: 0px; display: block; transition: all 800ms ease; transform: translate3d(-800px, 0px, 0px);">
-                                    <div class="owl-item" style="width: 400px;">
-                                        <div>
-                                            <a href=""> <img src="~/Resources/Item_images/612.750.jpg" alt="7.jpg"></a>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 400px;">
-                                        <div>
-                                            <a href=""> <img src="~/Resources/Item_images/610.750.jpg" alt="2.jpg"></a>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 400px;">
-                                        <div>
-                                            <a href=""> <img src="~/Resources/Item_images/613.750.jpg" alt="-21.jpg"></a>
-                                        </div>
-                                    </div>
-                                    <div class="owl-item" style="width: 400px;">
-                                        <div>
-                                            <a href=""> <img src="~/Resources/Item_images/611.750.jpg" alt="3.jpg"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="owl-controls clickable">
-                                <div class="owl-pagination">
-                                    <div class="owl-page">
-                                        <span class=""></span>
-                                    </div>
-                                    <div class="owl-page">
-                                        <span class="">
-                                        </span>
-                                    </div>
-                                    <div class="owl-page active">
-                                        <span class=""></span>
-                                    </div>
-                                    <div class="owl-page">
-                                        <span class=""></span>
-                                    </div>
-                                </div>
-                                <div class="owl-buttons">
-                                    <div class="owl-prev">
-                                        <a class="ui-banner-slider-prev">Previous</a>
-                                    </div>
-                                    <div class="owl-next">
-                                        <a class="ui-banner-slider-next">Next</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
             </div>
+
+            @*
+
+            <div class="best_selling_brands_head">
+                <h3>Best Selling Brands</h3>
+            </div>
+            <div class="best_selling_brands_body">
+                ﻿<a class="d_block t_align_c animate_fade" href=""><img alt="apple" src="~/Resources/Item_images/72.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="calvin-klein" src="~/Resources/Item_images/71.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="cartier" src="~/Resources/Item_images/69.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="curren" src="~/Resources/Item_images/66.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="hugo-boss" src="~/Resources/Item_images/85.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="nokia" src="~/Resources/Item_images/65.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="rayban" src="~/Resources/Item_images/87.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="samsung" src="~/Resources/Item_images/67.PNG"></a>
+            </div>
+
+            *@
+
+
+            <script>
+                $(document).ready(function () {
+                    $('.skus input:radio:checked').click();
+                    $(".ui-banner-slider-slider").owlCarousel({
+                        singleItem: true,
+                        autoPlay: true,
+                        stopOnHover: true,
+                        navigation: true,
+                        lazyLoad: true,
+                        navigationText: ['<a class="ui-banner-slider-prev">Previous</a>', '<a class="ui-banner-slider-next">Next</a>']
+                    });
+                    $(".industry-floor-women .recommend-box").owlCarousel({
+                        items: 1,
+                        autoPlay: true,
+                        stopOnHover: true,
+                        navigation: true,
+                        lazyLoad: true,
+                        navigationText: ['<a class="ui-banner-slider-prev">Previous</a>', '<a class="ui-banner-slider-next">Next</a>']
+                    });
+                    $('.indutry-info .industry-enter a').each(function () {
+                        var color = $(this).css('color');
+                        $(this).parent().parent().parent().css({ 'border-top-color': color });
+                    })
+
+                });
+            </script>
+
+
+
+
+
+
+
+
+            <div class="clear-both"></div>
+
         </div>
-        <div class="best_selling_brands_head">
-            <h3>Best Selling Brands</h3>
-        </div>
-        <div class="best_selling_brands_body">
-            ﻿<a class="d_block t_align_c animate_fade" href=""><img alt="apple" src="~/Resources/Item_images/72.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="calvin-klein" src="~/Resources/Item_images/71.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="cartier" src="~/Resources/Item_images/69.png"></a><a class="d_block t_align_c animate_fade" href=""><img alt="curren" src="~/Resources/Item_images/66.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="hugo-boss" src="~/Resources/Item_images/85.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="nokia" src="~/Resources/Item_images/65.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="rayban" src="~/Resources/Item_images/87.PNG"></a><a class="d_block t_align_c animate_fade" href=""><img alt="samsung" src="~/Resources/Item_images/67.PNG"></a>
-        </div>
-
-        <script>
-$(document).ready(function() {
-    $('.skus input:radio:checked').click();
-   $(".ui-banner-slider-slider").owlCarousel({
-	   singleItem:true,
-	   autoPlay : true,
-	   stopOnHover : true,
-	   navigation : true,
-       lazyLoad :  true,
-	   navigationText : ['<a class="ui-banner-slider-prev">Previous</a>','<a class="ui-banner-slider-next">Next</a>']
-   });
-   $(".industry-floor-women .recommend-box").owlCarousel({
-	   items : 1,
-	   autoPlay : true,
-	   stopOnHover : true,
-	   navigation : true,
-       lazyLoad :  true,
-	   navigationText : ['<a class="ui-banner-slider-prev">Previous</a>','<a class="ui-banner-slider-next">Next</a>']
-   });
-    $('.indutry-info .industry-enter a').each(function(){
-        var color = $(this).css('color');
-        $(this).parent().parent().parent().css({ 'border-top-color':color });
-    })
-
-});
-        </script>
-
-
-
-
-
-
-
-
+        <aside class="currency-toggle">
+            <select id="currency">
+                <option value="AED" selected="">United Arab Emirates dirham</option>
+                <option value="USD">United States Dollar</option>
+                <option value="QAR">Qatari riyal</option>
+                <option value="OMR">Omani rial</option>
+                <option value="SAR">Saudi riyal</option>
+                <option value="RUB">Russian Rouble</option>
+            </select>
+            <script>
+                $("#currency").change(function () {
+                    var url = location.href;
+                    if (url.indexOf('?') == -1) {
+                        url += '?';
+                    } else {
+                        url += '&';
+                    }
+                    location.href = url + 'currency=' + $(this).val();
+                });
+            </script>
+        </aside>
         <div class="clear-both"></div>
-
-    </div>
-    <aside class="currency-toggle">
-        <select id="currency">
-            <option value="AED" selected="">United Arab Emirates dirham</option>
-            <option value="USD">United States Dollar</option>
-            <option value="QAR">Qatari riyal</option>
-            <option value="OMR">Omani rial</option>
-            <option value="SAR">Saudi riyal</option>
-            <option value="RUB">Russian Rouble</option>
-        </select>
-        <script>
-            $("#currency").change(function () {
-                var url = location.href;
-                if (url.indexOf('?') == -1) {
-                    url += '?';
-                } else {
-                    url += '&';
-                }
-                location.href = url + 'currency=' + $(this).val();
-            });
-        </script>
-    </aside>
-    <div class="clear-both"></div>
-    <div id="dialog" class="dialog">
-        <div class="dialog-background"></div>
-        <div class="dialog-window">
-            <!-- common part -->
-            <div class="cart">
+        <div id="dialog" class="dialog">
+            <div class="dialog-background"></div>
+            <div class="dialog-window">
+                <!-- common part -->
+                <div class="cart">
+                </div>
+                <!-- /common part -->
             </div>
-            <!-- /common part -->
         </div>
-    </div>
-    <aside id="compare-leash">
-        <a style="display:none;" href="">Compare selected products (<strong>0</strong>)</a>
-    </aside>
-    <div class="services_features"><div class="site_main_wrapper reset_background reset_padding"><ul class="services_features_list clearFix"><li class="payment"><a> <span>Multiple Payment<br>Methods</span> </a></li><li class="delivery"><a> <span>Fast Delivery in<br>12 to 24 Hours</span> </a></li><li class="return"><a> <span>10 Days Return<br>Policy</span> </a></li><li class="genuine"><a> <span>100%<br>Genuine Products</span> </a></li><li class="support"><a> <span>For Help &amp; Support<br>Call us</span> </a></li><div style="clear: both;"></div></ul></div></div><div class="futer site-footer">
+        <aside id="compare-leash">
+            <a style="display:none;" href="">Compare selected products (<strong>0</strong>)</a>
+        </aside>
+        <div class="services_features"><div class="site_main_wrapper reset_background reset_padding"><ul class="services_features_list clearFix"><li class="payment"><a> <span>Multiple Payment<br>Methods</span> </a></li><li class="delivery"><a> <span>Fast Delivery in<br>12 to 24 Hours</span> </a></li><li class="return"><a> <span>10 Days Return<br>Policy</span> </a></li><li class="genuine"><a> <span>100%<br>Genuine Products</span> </a></li><li class="support"><a> <span>For Help &amp; Support<br>Call us</span> </a></li><div style="clear: both;"></div></ul></div></div><div class="futer site-footer">
 
-    </div><div class="footer-copywrite"><div class="container"><img src="~/Resources/Item_images/new-payment-methods.png" style="float: left"><div style="float: right; display: block"><img style="margin-right: 10px; margin-top: -5px;" src="~/Resources/Item_images/b_logo.png"></div></div></div>
-    <script>$('.cl-item').hover(function () {$(this).removeClass('cl-item-unfold');});$('.cl-item').mouseover(function () {$(this).addClass('cl-item-unfold');});$('.nav-user-account').mouseover(function () {$('.nav-user-account').addClass('user-account-unfold');}).mouseout(function () {$('.nav-user-account').removeClass('user-account-unfold');});$('.header-categories').hover(function () {$(this).removeClass('unfold-categories');});$('.header-categories').mouseover(function () {$(this).addClass('unfold-categories');});$('.logform form').attr('action', '/login/');</script>
-    <script type="text/javascript">document.write(unescape("%3Cscript charset='utf-8' src='http://151.253.103.26/hermes_net_v5/PlateformPublication/WebSitesLiveChat/Commun/TheWave/E4D697D4F51454B4_PL-NnAEK/loaderthewavev5.ashx' type='text/javascript'%3E%3C/script%3E"));</script>
-    <script charset="utf-8" src="http://151.253.103.26/hermes_net_v5/PlateformPublication/WebSitesLiveChat/Commun/TheWave/E4D697D4F51454B4_PL-NnAEK/loaderthewavev5.ashx" type="text/javascript"></script>
-</body>
+        </div><div class="footer-copywrite"><div class="container"><img src="~/Resources/Item_images/new-payment-methods.png" style="float: left"><div style="float: right; display: block"><img style="margin-right: 10px; margin-top: -5px;" src="~/Resources/Item_images/b_logo.png"></div></div></div>
+        <script>$('.cl-item').hover(function () { $(this).removeClass('cl-item-unfold'); }); $('.cl-item').mouseover(function () { $(this).addClass('cl-item-unfold'); }); $('.nav-user-account').mouseover(function () { $('.nav-user-account').addClass('user-account-unfold'); }).mouseout(function () { $('.nav-user-account').removeClass('user-account-unfold'); }); $('.header-categories').hover(function () { $(this).removeClass('unfold-categories'); }); $('.header-categories').mouseover(function () { $(this).addClass('unfold-categories'); }); $('.logform form').attr('action', '/login/');</script>
+        <script type="text/javascript">document.write(unescape("%3Cscript charset='utf-8' src='http://151.253.103.26/hermes_net_v5/PlateformPublication/WebSitesLiveChat/Commun/TheWave/E4D697D4F51454B4_PL-NnAEK/loaderthewavev5.ashx' type='text/javascript'%3E%3C/script%3E"));</script>
+        <script charset="utf-8" src="http://151.253.103.26/hermes_net_v5/PlateformPublication/WebSitesLiveChat/Commun/TheWave/E4D697D4F51454B4_PL-NnAEK/loaderthewavev5.ashx" type="text/javascript"></script>
+    </body>
 </html>
