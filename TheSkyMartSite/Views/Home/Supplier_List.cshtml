@@ -43,8 +43,9 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            <img src="~/Resources/Supplier_images/@Html.DisplayFor(modelItem => item.Logo_image)" />
-
+            <a href="@Url.Action("Index", new {  id = item.Supplier_ID})">
+                <img src="~/Resources/Supplier_images/@Html.DisplayFor(modelItem => item.Logo_image)" />
+            </a>
               
         </td>
     </tr>
